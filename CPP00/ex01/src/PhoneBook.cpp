@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/22 16:15:52 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:47:14 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 PhoneBook::PhoneBook()
 {
 	contact_count = 0;
+	index = 0;
 }
 
 void PhoneBook::check_input(const std::string &prompt, bool (Contact::*setter)(const std::string), Contact &contact)
@@ -50,15 +51,16 @@ void print_formatted_name(std::string name, std::string delim)
 
 void PhoneBook::add_contact()
 {
-	check_input("Enter first name: ", &Contact::set_first_name, contacts[contact_count]);
-	check_input("Enter last name: ", &Contact::set_last_name, contacts[contact_count]);
-	check_input("Enter nickname: ", &Contact::set_nickname, contacts[contact_count]);
-	check_input("Enter phone number: ", &Contact::set_phone_number, contacts[contact_count]);
-	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, contacts[contact_count]);
+	check_input("Enter first name: ", &Contact::set_first_name, contacts[index]);
+	check_input("Enter last name: ", &Contact::set_last_name, contacts[index]);
+	check_input("Enter nickname: ", &Contact::set_nickname, contacts[index]);
+	check_input("Enter phone number: ", &Contact::set_phone_number, contacts[index]);
+	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, contacts[index]);
 	std::cout << SUCCESS "Contact added successfully." << std::endl;
 	contact_count++;
-	if (contact_count == 8)
-		contact_count = 0;
+	index++;
+	if (index == 8)
+		index = 0;
 }
 
 void PhoneBook::search_contact()
@@ -71,8 +73,10 @@ void PhoneBook::search_contact()
 		return;
 	}
 	std::cout << BOLD "index     |first name|last name |nickname  " << std::endl;
-	for (i = 0; i < contact_count; i++)
+	for (i = 0; i < 8; i++)
 	{
+		if (contacts[i].get_first_name().empty())
+			break;
 		std::cout << "-------------------------------------------" RESET << std::endl;
 		std::cout << i << "         |";
 		print_formatted_name(contacts[i].get_first_name(), "|");
@@ -85,7 +89,7 @@ void PhoneBook::search_contact()
 	if (std::cin.eof())
 		exit(0);
 	i = input[0] - '0';
-	while (input.length() != 1 || input[0] < '0' || input[0] > '7' || i > contact_count)
+	while (input.length() != 1 || input[0] < '0' || input[0] > '7' || i > 8 || contacts[i].get_first_name().empty())
 	{
 		std::cout << WARNING "Invalid index. Please try again: " RESET;
 		std::getline(std::cin, input);
