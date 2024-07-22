@@ -6,11 +6,12 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:36:38 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/22 15:08:59 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:14:40 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include "colors.hpp"
 
 bool Contact::set_first_name(const std::string first_name)
 {
@@ -88,9 +89,12 @@ std::string Contact::get_darkest_secret()
 
 void Contact::print_contact()
 {
-	std::cout << "First name:\t" << _first_name << std::endl;
-	std::cout << "Last name:\t" << _last_name << std::endl;
-	std::cout << "Nickname:\t" << _nickname << std::endl;
-	std::cout << "Telephone number:\t" << _phone_number << std::endl;
-	std::cout << "Darkest secret:\t" << _darkest_secret << std::endl;
+	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << INFO "Contact information:" RESET << std::endl;
+	std::cout << SEMIBOLD "First name:\t\t" RESET << _first_name << std::endl;
+	std::cout << SEMIBOLD "Last name:\t\t" RESET << _last_name << std::endl;
+	std::cout << SEMIBOLD "Nickname:\t\t" RESET << _nickname << std::endl;
+	std::cout << SEMIBOLD "Telephone number:\t" RESET << _phone_number << std::endl;
+	std::cout << SEMIBOLD "Darkest secret:\t\t" RESET << _darkest_secret << std::endl;
+	std::cout << "-----------------------------------------------" << std::endl;
 }

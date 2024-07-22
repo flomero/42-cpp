@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/22 14:20:48 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/22 15:37:04 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = include
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = PhoneBook.hpp Contact.hpp
+HEADERS = PhoneBook.hpp Contact.hpp colors.hpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)
