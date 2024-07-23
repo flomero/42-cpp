@@ -1,6 +1,7 @@
 # Executables
 megaphone
 phonebook
+tests
 
 # Prerequisites
 *.d
@@ -42,3 +43,4 @@ phonebook
 # Weird stuff
 .DS_Store
 .vscode
+*.log
