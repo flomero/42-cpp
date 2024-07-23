@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/22 15:37:04 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/23 12:21:38 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = phonebook
 
-SRC_DIR = src
+SRC_DIR = ./
 SRC = main.cpp PhoneBook.cpp Contact.cpp
 
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
-INCLUDE_DIR = include
+INCLUDE_DIR = ./
 INCLUDES = -I $(INCLUDE_DIR)
 
 HEADERS = PhoneBook.hpp Contact.hpp colors.hpp
