@@ -6,13 +6,14 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:43:34 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/23 13:50:26 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:48:01 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -41,10 +42,17 @@ int Account::getNbWithdrawals(void)
 
 void Account::_displayTimestamp(void)
 {
-	std::time_t t = std::time(nullptr);
-	std::tm *now = std::localtime(&t);
-	std::cout << "[";
-	std::cout << std::put_time(now, "%Y%m%d_%H%M%S");
+	time_t t;
+	struct tm *local;
+
+	std::time(&t);
+	local = localtime(&t);
+	std::cout << "[" << local->tm_year + 1900;
+	std::cout << std::setw(2) << std::setfill('0') << local->tm_mon + 1;
+	std::cout << std::setw(2) << std::setfill('0') << local->tm_mday;
+	std::cout << "_" << std::setw(2) << std::setfill('0') << local->tm_hour;
+	std::cout << std::setw(2) << std::setfill('0') << local->tm_min;
+	std::cout << std::setw(2) << std::setfill('0') << local->tm_sec;
 	std::cout << "] ";
 }
 
@@ -124,4 +132,9 @@ bool Account::makeWithdrawal(int withdrawal)
 	std::cout << ";nb_withdrawals:" << _nbWithdrawals;
 	std::cout << std::endl;
 	return true;
+}
+
+int Account::checkAmount(void) const
+{
+	return _amount;
 }

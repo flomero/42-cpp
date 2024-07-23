@@ -6,10 +6,11 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/23 11:15:53 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:06:38 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
 #include "PhoneBook.hpp"
 #include "colors.hpp"
 
