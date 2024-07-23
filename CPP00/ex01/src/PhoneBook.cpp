@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/22 17:47:14 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:15:53 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void PhoneBook::add_contact()
 	check_input("Enter nickname: ", &Contact::set_nickname, contacts[index]);
 	check_input("Enter phone number: ", &Contact::set_phone_number, contacts[index]);
 	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, contacts[index]);
-	std::cout << SUCCESS "Contact added successfully." << std::endl;
+	std::cout << SUCCESS "Contact added successfully." RESET << std::endl;
 	contact_count++;
 	index++;
 	if (index == 8)

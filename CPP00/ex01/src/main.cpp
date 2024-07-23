@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:51:08 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/22 16:10:39 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:11:14 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main()
 		else if (command == "EXIT")
 			break;
 		else
-			std::cout << "Invalid command. Please enter ADD, SEARCH, or EXIT." << std::endl;
+			std::cout << ERROR "Invalid command. Please enter ADD, SEARCH, or EXIT." RESET << std::endl;
 	}
 	return (0);
 }
