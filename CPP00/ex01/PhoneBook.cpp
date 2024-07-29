@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 23:49:34 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:53:14 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ PhoneBook::PhoneBook() : contact_count(0), index(0)
 PhoneBook::~PhoneBook()
 {
 	size_t i;
-	size_t limit = contact_count > 8 ? 8 : contact_count;
+	size_t limit = contact_count > PHONEBOOK_SIZE ? PHONEBOOK_SIZE : contact_count;
 	for (i = 0; i < limit; i++)
 		delete contacts[i];
 }
@@ -65,12 +65,12 @@ void PhoneBook::add_contact()
 	check_input("Enter phone number: ", &Contact::set_phone_number, contact);
 	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, contact);
 	std::cout << SUCCESS "Contact added successfully." RESET << std::endl;
-	if (contact_count > 8)
+	if (contact_count > PHONEBOOK_SIZE)
 		delete contacts[index];
 	contacts[index] = contact;
 	contact_count++;
 	index++;
-	if (index == 8)
+	if (index == PHONEBOOK_SIZE)
 		index = 0;
 }
 
@@ -100,7 +100,7 @@ void PhoneBook::search_contact()
 	if (std::cin.eof())
 		exit(0);
 	i = input[0] - '0';
-	while (input.length() != 1 || input[0] < '0' || input[0] > '7' || i >= contact_count || (*contacts[i]).get_first_name().empty())
+	while (input.length() != 1 || input[0] < '0' || input[0] > PHONEBOOK_SIZE + '0' || i >= contact_count || (*contacts[i]).get_first_name().empty())
 	{
 		std::cout << WARNING "Invalid index. Please try again: " RESET;
 		std::getline(std::cin, input);

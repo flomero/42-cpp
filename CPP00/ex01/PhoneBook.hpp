@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:41:31 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 23:42:19 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:51:20 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 #include <iostream>
 #include "Contact.hpp"
 
+#ifndef PHONEBOOK_SIZE
+#define PHONEBOOK_SIZE 8
+#endif
+
 class PhoneBook
 {
 private:
-	Contact *contacts[8];
+	Contact *contacts[PHONEBOOK_SIZE];
 	size_t contact_count;
 	size_t index;
 	void check_input(const std::string &prompt,
