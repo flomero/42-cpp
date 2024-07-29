@@ -6,12 +6,12 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/29 16:17:17 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/29 23:40:03 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 NAME = phonebook
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = PhoneBook.hpp Contact.hpp colors.hpp
+HEADERS = PhoneBook.hpp Contact.hpp colors.h
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)

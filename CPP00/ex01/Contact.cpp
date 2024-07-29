@@ -6,12 +6,20 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:36:38 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/23 11:15:02 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:25:37 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-#include "colors.hpp"
+#include "colors.h"
+
+Contact::Contact()
+{
+}
+
+Contact::~Contact()
+{
+}
 
 bool Contact::set_first_name(const std::string first_name)
 {

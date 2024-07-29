@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.hpp                                         :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:35:17 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/22 16:14:08 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:20:53 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef COLORS_H
+# define COLORS_H
 
 #define RESET "\033[0m"
 #define BOLD "\033[1m"
@@ -27,3 +28,5 @@
 #define INFO CYAN BOLD
 #define SUCCESS GREEN BOLD
 #define PROMPT BLUE ITALIC
+
+#endif
