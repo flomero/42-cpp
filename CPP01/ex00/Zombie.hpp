@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:34:59 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 16:09:40 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:19 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ private:
 	std::string _name;
 
 public:
+	Zombie();
 	Zombie(std::string name);
 	~Zombie();
 	void announce(void);
