@@ -6,12 +6,12 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/23 12:21:38 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/29 16:17:17 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = phonebook
 
@@ -33,7 +33,7 @@ vpath %.cpp $(SRC_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@if [ -f $(NAME) ]; then \
 		echo "\n$(GREEN)$(NAME) compiled successfully!$(NC)"; \
 		echo "$(CYAN)Run with ./$(NAME)$(NC)"; \
@@ -46,7 +46,7 @@ $(OBJ_DIR)/%.o: %.cpp $(HEADERS) | $(OBJ_DIR)
 	@$(eval CURRENT := $(shell echo $$(($(CURRENT) + 1))))
 	@$(eval PERCENT := $(shell echo $$(($(CURRENT) * 100 / $(TOTAL_SRCS)))))
 	@printf "$(CLEAR_LINE)$(YELLOW)Compiling $(PERCENT)%% [$(CURRENT)/$(TOTAL_SRCS)] $(ITALIC_LIGHT_YELLOW)$<$(NC) "
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@ $(INCLUDES)
 
 $(OBJ_DIR):
 	@echo "$(YELLOW)Creating obj directory...$(NC)"
