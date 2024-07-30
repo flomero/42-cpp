@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:23:20 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 10:37:27 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:58:39 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 Harl::Harl()
 {
-	_complaints["DEBUG"] = &Harl::debug;
-	_complaints["INFO"] = &Harl::info;
-	_complaints["WARNING"] = &Harl::warning;
-	_complaints["INFO"] = &Harl::error;
+	_levels[0] = "DEBUG";
+	_levels[1] = "INFO";
+	_levels[2] = "WARNING";
+	_levels[3] = "ERROR";
+	_complaints[0] = &Harl::debug;
+	_complaints[1] = &Harl::info;
+	_complaints[2] = &Harl::warning;
+	_complaints[3] = &Harl::error;
 }
 
 Harl::~Harl()
@@ -26,11 +30,16 @@ Harl::~Harl()
 
 void Harl::complain(std::string level)
 {
-	void (Harl::*complaint)() = _complaints[level];
-	if (complaint)
-		(this->*complaint)();
-	else
-		std::cerr << "Unknown complaint level: " << level << std::endl;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == _levels[i])
+		{
+			(this->*_complaints[i])();
+			return;
+		}
+	}
+	std::cerr << "Unknown complaint level: " << level << std::endl;
 }
 
 void Harl::debug()

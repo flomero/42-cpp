@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:23:20 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 10:28:56 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:58:40 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,32 @@
 
 Harl::Harl(std::string filter) : _filter(filter), _filterLevel(-1)
 {
-	_complaints["DEBUG"] = &Harl::doNothing;
-	_complaints["INFO"] = &Harl::doNothing;
-	_complaints["WARNING"] = &Harl::doNothing;
-	_complaints["ERROR"] = &Harl::doNothing;
-	std::string filters[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	_levels[0] = "DEBUG";
+	_levels[1] = "INFO";
+	_levels[2] = "WARNING";
+	_levels[3] = "ERROR";
+	_complaints[0] = NULL;
+	_complaints[1] = NULL;
+	_complaints[2] = NULL;
+	_complaints[3] = NULL;
 	for (int i = 0; i < 4; i++)
 	{
-		if (filter == filters[i])
+		if (filter == _levels[i])
 			_filterLevel = i;
 	}
 	switch (_filterLevel)
 	{
 	case DEBUG:
-		_complaints["DEBUG"] = &Harl::debug;
+		_complaints[DEBUG] = &Harl::debug;
 	case INFO:
-		_complaints["INFO"] = &Harl::info;
+		_complaints[INFO] = &Harl::info;
 	case WARNING:
-		_complaints["WARNING"] = &Harl::warning;
+		_complaints[WARNING] = &Harl::warning;
 	case ERROR:
-		_complaints["ERROR"] = &Harl::error;
+		_complaints[ERROR] = &Harl::error;
 		break;
 	default:
-		std::cerr << "[ Probably complaining about insignificant problems ]" << filter << std::endl;
+		std::cerr << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 }
 
@@ -46,11 +49,16 @@ Harl::~Harl()
 
 void Harl::complain(std::string level)
 {
-	void (Harl::*complaint)() = _complaints[level];
-	if (complaint)
-		(this->*complaint)();
-	else
-		std::cerr << "Unknown complaint level: " << level << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == _levels[i])
+		{
+			if (_complaints[i] != NULL)
+				(this->*_complaints[i])();
+			return;
+		}
+	}
+	std::cerr << "Unknown complaint level: " << level << std::endl;
 }
 
 void Harl::debug()
@@ -75,8 +83,4 @@ void Harl::error()
 {
 	std::cout << "[ ERROR ]" << std::endl;
 	std::cout << COL_ERROR MSG_ERROR COL_RESET << std::endl;
-}
-
-void Harl::doNothing()
-{
 }

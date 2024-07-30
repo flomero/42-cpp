@@ -6,14 +6,13 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:19:34 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 09:33:33 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:44:20 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <map>
 
 #define COL_RESET "\033[0m"
 #define COL_DEBUG "\033[1;34m"
@@ -38,5 +37,6 @@ private:
 	void info();
 	void warning();
 	void error();
-	std::map<std::string, void (Harl::*)()> _complaints;
+	std::string _levels[4];
+	void (Harl::*_complaints[4])();
 };
