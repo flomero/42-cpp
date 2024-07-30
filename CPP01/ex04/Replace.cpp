@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:07:43 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 23:18:57 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:39:28 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void Replace::replace()
 		std::cerr << "Error: Can't replace empty string." << std::endl;
 		return;
 	}
-	std::ifstream file(_filename);
+	std::ifstream file(_filename.c_str());
 	if (!file.is_open())
 	{
 		std::cerr << "Error: File not found" << std::endl;
 		return;
 	}
-	std::ofstream output(_filename + ".replace");
+	std::ofstream output((_filename + ".replace").c_str());
 	if (!output.is_open())
 	{
 		std::cerr << "Error: Could not create output file" << std::endl;
