@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:23:20 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 13:58:40 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:52:49 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ Harl::Harl(std::string filter) : _filter(filter), _filterLevel(-1)
 	{
 	case DEBUG:
 		_complaints[DEBUG] = &Harl::debug;
+		// intentional fallthrough
 	case INFO:
 		_complaints[INFO] = &Harl::info;
+		// intentional fallthrough
 	case WARNING:
 		_complaints[WARNING] = &Harl::warning;
+		// intentional fallthrough
 	case ERROR:
 		_complaints[ERROR] = &Harl::error;
 		break;
@@ -63,24 +66,24 @@ void Harl::complain(std::string level)
 
 void Harl::debug()
 {
-	std::cout << "[ DEBUG ]" << std::endl;
-	std::cout << COL_DEBUG MSG_DEBUG COL_RESET << std::endl;
+	std::cout << "[ DEBUG ]\n"
+			  << COL_DEBUG MSG_DEBUG COL_RESET << std::endl;
 }
 
 void Harl::info()
 {
-	std::cout << "[ INFO ]" << std::endl;
-	std::cout << COL_INFO MSG_INFO COL_RESET << std::endl;
+	std::cout << "[ INFO ]\n"
+			  << COL_INFO MSG_INFO COL_RESET << std::endl;
 }
 
 void Harl::warning()
 {
-	std::cout << "[ WARNING ]" << std::endl;
-	std::cout << COL_WARNING MSG_WARNING COL_RESET << std::endl;
+	std::cout << "[ WARNING ]\n"
+			  << COL_WARNING MSG_WARNING COL_RESET << std::endl;
 }
 
 void Harl::error()
 {
-	std::cout << "[ ERROR ]" << std::endl;
-	std::cout << COL_ERROR MSG_ERROR COL_RESET << std::endl;
+	std::cout << "[ ERROR ]\n"
+			  << COL_ERROR MSG_ERROR COL_RESET << std::endl;
 }

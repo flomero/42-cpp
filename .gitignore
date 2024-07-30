@@ -3,6 +3,7 @@ megaphone
 phonebook
 tests
 replace
+*.replace
 harl
 harlFilter
 
