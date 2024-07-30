@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:17:12 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 15:56:17 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:25:35 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int main(int argc, char **argv)
 			std::cout << static_cast<char>(toupper(str[j]));
 		i++;
 	}
+	std::cout << std::endl;
 }
