@@ -2,6 +2,9 @@
 megaphone
 phonebook
 tests
+replace
+harl
+harlFilter
 
 # Prerequisites
 *.d

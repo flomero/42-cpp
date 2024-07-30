@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:23:20 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 09:36:44 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:37:27 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 Harl::Harl()
 {
-	_complaints["debug"] = &Harl::debug;
-	_complaints["info"] = &Harl::info;
-	_complaints["warning"] = &Harl::warning;
-	_complaints["error"] = &Harl::error;
+	_complaints["DEBUG"] = &Harl::debug;
+	_complaints["INFO"] = &Harl::info;
+	_complaints["WARNING"] = &Harl::warning;
+	_complaints["INFO"] = &Harl::error;
 }
 
 Harl::~Harl()
