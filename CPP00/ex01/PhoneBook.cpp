@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 23:53:14 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:21:53 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void PhoneBook::search_contact()
 		std::cout << WARNING "No contacts available." << std::endl;
 		return;
 	}
-	std::cout << BOLD "index     |first name|last name |nickname  " << std::endl;
+	std::cout << BOLD "index     |first name|last name |nickname  " << "\n";
 	for (i = 0; i < index; i++)
 	{
 		if ((*contacts[i]).get_first_name().empty())
 			break;
-		std::cout << "-------------------------------------------" RESET << std::endl;
+		std::cout << "-------------------------------------------" RESET << "\n";
 		std::cout << i << "         |";
 		print_formatted_name((*contacts[i]).get_first_name(), "|");
 		print_formatted_name((*contacts[i]).get_last_name(), "|");
