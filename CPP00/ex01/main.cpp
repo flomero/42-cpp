@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:51:08 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/31 15:11:52 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:11:29 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int main()
 		std::cout << PROMPT "Enter a command: " RESET;
 		std::getline(std::cin, command);
 		if (std::cin.eof() || command == "EXIT")
-		{
-			phonebook.free_and_exit();
 			break;
-		}
 		else if (command == "ADD")
 			phonebook.add_contact();
 		else if (command == "SEARCH")

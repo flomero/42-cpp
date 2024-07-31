@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:41:31 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/31 15:12:28 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:09:26 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 class PhoneBook
 {
 private:
-	Contact *contacts[PHONEBOOK_SIZE];
+	Contact contacts[PHONEBOOK_SIZE];
 	size_t contact_count;
 	size_t index;
 	void check_input(const std::string &prompt,
@@ -33,5 +33,4 @@ public:
 	~PhoneBook();
 	void add_contact();
 	void search_contact();
-	void free_and_exit();
 };

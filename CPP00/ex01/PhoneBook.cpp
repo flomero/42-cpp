@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/31 15:14:38 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:11:04 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,12 @@
 #include "PhoneBook.hpp"
 #include "colors.h"
 
-void PhoneBook::free_and_exit()
-{
-	size_t i;
-	size_t limit = contact_count > PHONEBOOK_SIZE ? PHONEBOOK_SIZE : contact_count;
-	for (i = 0; i < limit; i++)
-		delete contacts[i];
-	std::cout << ITALIC "\nExiting program..." RESET << std::endl;
-	exit(0);
-}
-
 PhoneBook::PhoneBook() : contact_count(0), index(0)
 {
 }
 
 PhoneBook::~PhoneBook()
 {
-	size_t i;
-	size_t limit = contact_count > PHONEBOOK_SIZE ? PHONEBOOK_SIZE : contact_count;
-	for (i = 0; i < limit; i++)
-		delete contacts[i];
 }
 
 void PhoneBook::check_input(const std::string &prompt, bool (Contact::*setter)(const std::string), Contact *contact)
@@ -42,13 +28,13 @@ void PhoneBook::check_input(const std::string &prompt, bool (Contact::*setter)(c
 	std::cout << PROMPT << prompt << RESET;
 	std::getline(std::cin, input);
 	if (std::cin.eof())
-		free_and_exit();
+		exit(0);
 	while (((*contact).*setter)(input))
 	{
 		std::cout << WARNING "Invalid input. Please enter a valid input: " RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			free_and_exit();
+			exit(0);
 	}
 }
 
@@ -68,15 +54,13 @@ void print_formatted_name(std::string name, std::string delim)
 
 void PhoneBook::add_contact()
 {
-	Contact *contact = new Contact();
-	check_input("Enter first name: ", &Contact::set_first_name, contact);
-	check_input("Enter last name: ", &Contact::set_last_name, contact);
-	check_input("Enter nickname: ", &Contact::set_nickname, contact);
-	check_input("Enter phone number: ", &Contact::set_phone_number, contact);
-	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, contact);
+	Contact contact;
+	check_input("Enter first name: ", &Contact::set_first_name, &contact);
+	check_input("Enter last name: ", &Contact::set_last_name, &contact);
+	check_input("Enter nickname: ", &Contact::set_nickname, &contact);
+	check_input("Enter phone number: ", &Contact::set_phone_number, &contact);
+	check_input("Enter darkest secret: ", &Contact::set_darkest_secret, &contact);
 	std::cout << SUCCESS "Contact added successfully." RESET << std::endl;
-	if (contact_count >= PHONEBOOK_SIZE)
-		delete contacts[index];
 	contacts[index] = contact;
 	contact_count++;
 	index++;
@@ -98,23 +82,23 @@ void PhoneBook::search_contact()
 	{
 		std::cout << "-------------------------------------------" RESET << "\n";
 		std::cout << i << "         |";
-		print_formatted_name((*contacts[i]).get_first_name(), "|");
-		print_formatted_name((*contacts[i]).get_last_name(), "|");
-		print_formatted_name((*contacts[i]).get_nickname(), "");
+		print_formatted_name(contacts[i].get_first_name(), "|");
+		print_formatted_name(contacts[i].get_last_name(), "|");
+		print_formatted_name(contacts[i].get_nickname(), "");
 		std::cout << std::endl;
 	}
 	std::cout << PROMPT "Enter index of contact to view: " RESET;
 	std::getline(std::cin, input);
 	if (std::cin.eof())
-		free_and_exit();
+		exit(0);
 	int i = input[0] - '0';
 	while (input.length() != 1 || i > limit - 1 || i < 0)
 	{
 		std::cout << WARNING "Invalid index. Please try again: " RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			free_and_exit();
+			exit(0);
 		i = input[0] - '0';
 	}
-	(*contacts[i]).print_contact();
+	contacts[i].print_contact();
 }
