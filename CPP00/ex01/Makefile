@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/30 19:42:59 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/31 12:50:21 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,11 @@ fclean: clean
 	@rm -f $(NAME)
 	
 re: fclean all
+
+small: CXXFLAGS += -DPHONEBOOK_SIZE=3
+small: re
+
+.PHONY: all clean fclean re small
 
 # Decorative macros
 GREEN = \033[0;32m
