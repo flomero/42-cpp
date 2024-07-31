@@ -6,13 +6,23 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:59:10 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/31 13:03:05 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:14:38 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdlib>
 #include "PhoneBook.hpp"
 #include "colors.h"
+
+void PhoneBook::free_and_exit()
+{
+	size_t i;
+	size_t limit = contact_count > PHONEBOOK_SIZE ? PHONEBOOK_SIZE : contact_count;
+	for (i = 0; i < limit; i++)
+		delete contacts[i];
+	std::cout << ITALIC "\nExiting program..." RESET << std::endl;
+	exit(0);
+}
 
 PhoneBook::PhoneBook() : contact_count(0), index(0)
 {
@@ -32,13 +42,13 @@ void PhoneBook::check_input(const std::string &prompt, bool (Contact::*setter)(c
 	std::cout << PROMPT << prompt << RESET;
 	std::getline(std::cin, input);
 	if (std::cin.eof())
-		exit(0);
+		free_and_exit();
 	while (((*contact).*setter)(input))
 	{
 		std::cout << WARNING "Invalid input. Please enter a valid input: " RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			exit(0);
+			free_and_exit();
 	}
 }
 
@@ -96,14 +106,14 @@ void PhoneBook::search_contact()
 	std::cout << PROMPT "Enter index of contact to view: " RESET;
 	std::getline(std::cin, input);
 	if (std::cin.eof())
-		exit(0);
+		free_and_exit();
 	int i = input[0] - '0';
-	while (input.length() != 1 || i > limit - 1)
+	while (input.length() != 1 || i > limit - 1 || i < 0)
 	{
 		std::cout << WARNING "Invalid index. Please try again: " RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			exit(0);
+			free_and_exit();
 		i = input[0] - '0';
 	}
 	(*contacts[i]).print_contact();
