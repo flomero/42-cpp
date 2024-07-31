@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/07/29 21:38:29 by flfische         ###   ########.fr        #
+#    Updated: 2024/07/31 13:58:34 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,8 @@ fclean: clean
 	@rm -f $(NAME)
 	
 re: fclean all
+
+.PHONY: all clean fclean re
 
 # Decorative macros
 GREEN = \033[0;32m

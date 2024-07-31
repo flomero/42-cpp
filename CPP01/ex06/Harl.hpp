@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:19:34 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 15:22:34 by flfische         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:03:24 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ private:
 	void info();
 	void warning();
 	void error();
-	void doNothing();
 	std::string _levels[4];
 	void (Harl::*_complaints[4])();
 	std::string _filter;
