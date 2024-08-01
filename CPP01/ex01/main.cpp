@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:03:08 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 18:56:08 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:52:06 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(void)
 {
 	std::cout << "Creating a Zombie horde:" << std::endl;
 	std::cout << std::endl;
-	Zombie *zombies = zombieHorde(5, "Zombie");
+	Zombie *zombies = zombieHorde(5, "Horde Zombie");
 	std::cout << std::endl;
 	std::cout << "Announcing the Zombie horde:" << std::endl;
 	std::cout << std::endl;

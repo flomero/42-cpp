@@ -6,13 +6,13 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:37:46 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/29 18:38:14 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:11:11 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie() : _name("Zombie")
 {
 }
 

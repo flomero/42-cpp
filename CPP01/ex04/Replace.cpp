@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:07:43 by flfische          #+#    #+#             */
-/*   Updated: 2024/07/30 16:39:28 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:59:07 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void Replace::replace()
 	std::ifstream file(_filename.c_str());
 	if (!file.is_open())
 	{
-		std::cerr << "Error: File not found" << std::endl;
+		std::cerr << "Error: File can't be opened." << std::endl;
 		return;
 	}
 	std::ofstream output((_filename + ".replace").c_str());
