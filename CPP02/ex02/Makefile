@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/08/02 10:56:09 by flfische         ###   ########.fr        #
+#    Updated: 2024/08/03 17:25:43 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,10 @@ fclean: clean
 	
 re: fclean all
 
-.PHONY: all clean fclean re
+print: CXXFLAGS += -DPRINT
+print: re
+
+.PHONY: all clean fclean re print
 
 # Decorative macros
 GREEN = \033[0;32m
