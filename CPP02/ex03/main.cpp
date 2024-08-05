@@ -6,42 +6,30 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:01 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/04 12:15:12 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:50:01 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
 #include "Fixed.hpp"
+#include "Point.hpp"
 
 int main(void)
 {
-	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max(a, b) << std::endl;
+	Point a(0, 0);
+	Point b(0, 1);
+	Point c(1, 0);
+	Point point1(0.5, 0.5);
+	Point point2(1, 1);
+	Point point3(0, 0);
+	Point point4(-0.5, -0.5);
+	Point point5(1.00001f, 0.0f);
 
-	std::cout << "------------------------------\n"
-			  << "Additional tests (not in the subject)\n";
-	std::cout << Fixed::min(a, b) << std::endl;
-	std::cout << a + b << std::endl;
-	std::cout << a - b << std::endl;
-	Fixed c(42);
-	Fixed d(2.5f);
-	std::cout << c << std::endl;
-	std::cout << d << std::endl;
-	std::cout << c * d << std::endl;
-	std::cout << c / d << std::endl;
-	std::cout << "Comparisons\n";
-	std::cout << (a == b) << std::endl;
-	std::cout << (a != b) << std::endl;
-	std::cout << (a > a) << std::endl;
-	std::cout << (a < a) << std::endl;
-	std::cout << (a >= a) << std::endl;
+	std::cout << "Point 1 is" << (bsp(a, b, c, point1) ? "\033[32m inside" : "\033[31m outside") << "\033[0m the triangle." << std::endl;
+	std::cout << "Point 2 is" << (bsp(a, b, c, point2) ? "\033[32m inside" : "\033[31m outside") << "\033[0m the triangle." << std::endl;
+	std::cout << "Point 3 is" << (bsp(a, b, c, point3) ? "\033[32m inside" : "\033[31m outside") << "\033[0m the triangle." << std::endl;
+	std::cout << "Point 4 is" << (bsp(a, b, c, point4) ? "\033[32m inside" : "\033[31m outside") << "\033[0m the triangle." << std::endl;
+	std::cout << "Point 5 is" << (bsp(a, b, c, point5) ? "\033[32m inside" : "\033[31m outside") << "\033[0m the triangle." << std::endl;
 	return 0;
 }
