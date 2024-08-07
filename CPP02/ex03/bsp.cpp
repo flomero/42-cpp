@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:20:00 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/05 12:32:01 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:36:40 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed denom = computeDeterminant(b, c, a);
 	Fixed x = computeDeterminant(b, c, point) / denom;
 	Fixed y = computeDeterminant(c, a, point) / denom;
-	Fixed z = Fixed(1) - x - y;
+	Fixed z = Fixed(1.0f) - x - y;
 
-	return (x >= Fixed(0) && y >= Fixed(0) && z >= Fixed(0));
+	return (x >= Fixed(0.0f) && y >= Fixed(0.0f) && z >= Fixed(0.0f));
 }
