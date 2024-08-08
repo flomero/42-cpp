@@ -6,13 +6,13 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:38:46 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/07 17:53:33 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:31:28 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap() : _name("ClapTrap")
 {
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
@@ -65,7 +65,7 @@ void ClapTrap::attack(const std::string &target)
 	_energyPoints--;
 	std::cout << "ClapTrap " << _name
 			  << " attacks " << target
-			  << " causing " << _attackDamage
+			  << ", causing " << _attackDamage
 			  << " points of damage!" << std::endl;
 }
 
@@ -82,7 +82,9 @@ void ClapTrap::takeDamage(unsigned int amount)
 	_hitpoints -= amount;
 	std::cout << "ClapTrap " << _name
 			  << " takes " << amount
-			  << " points of damage!" << std::endl;
+			  << " points of damage!"
+			  << " Remaining hitpoints: " << _hitpoints
+			  << std::endl;
 	if (_hitpoints == 0)
 		std::cout << "ClapTrap " << _name
 				  << " died." << std::endl;
@@ -106,5 +108,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	_hitpoints += amount;
 	std::cout << "ClapTrap " << _name
 			  << " is repaired for " << amount
-			  << " hitpoints!" << std::endl;
+			  << " hitpoints!"
+			  << " Remaining hitpoints: " << _hitpoints
+			  << std::endl;
 }
