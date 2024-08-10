@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/08/10 14:34:16 by flfische         ###   ########.fr        #
+#    Updated: 2024/08/10 16:58:45 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 NAME = tests
 
 SRC_DIR = ./
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJ_DIR = ./obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = ClapTrap.hpp ScavTrap.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)

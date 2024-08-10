@@ -6,21 +6,23 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:38:48 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/10 16:53:09 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:02:02 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-	ScavTrap scavTrap("Tim");
-	ScavTrap scavTrap2(scavTrap);
+	ScavTrap scavTrap("ScavTrap");
+	FragTrap fragTrap("FragTrap");
 
-	scavTrap.attack("enemy");
-	scavTrap2.attack("enemy");
+	scavTrap.attack("FragTrap");
+	fragTrap.attack("ScavTrap");
+
 	scavTrap.guardGate();
-	scavTrap2.guardGate();
-	scavTrap2.guardGate();
+	fragTrap.highFivesGuys();
+
 	return 0;
 }
