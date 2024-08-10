@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:34:30 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/10 14:49:43 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:51:11 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,7 @@ public:
 	~ScavTrap();
 	void guardGate();
 	void attack(const std::string &target);
+
+private:
+	bool _inGuardMode = false;
 };

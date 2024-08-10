@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:34:26 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/10 14:49:02 by flfische         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:51:29 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,11 @@ void ScavTrap::attack(const std::string &target)
 
 void ScavTrap::guardGate()
 {
+	if (_inGuardMode)
+	{
+		std::cout << "ScavTrap " << _name << " is already in Gate keeper mode." << std::endl;
+		return;
+	}
+	_inGuardMode = true;
 	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
 }
