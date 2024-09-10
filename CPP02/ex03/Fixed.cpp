@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/03 17:24:01 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:37:31 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,9 @@ Fixed Fixed::operator*(const Fixed &fixed) const
 Fixed Fixed::operator/(const Fixed &fixed) const
 {
 	Fixed result;
+
+	if (fixed.getRawBits() == 0)
+		throw std::invalid_argument("Error: Division by zero");
 	result.setRawBits((_fixedPointValue << _fractionalBits) / fixed.getRawBits());
 	return result;
 }
