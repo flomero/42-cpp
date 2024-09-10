@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:01 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/05 17:36:34 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:10:22 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int main(void)
 	Point b(0, 1);
 	Point c(1, 0);
 
-	Point point1(0.5, 0.5);
+	Point point1(0.5, 0.3);
 	Point point2(1, 1);
-	Point point3(0, 0);
+	Point point3(0.1, 0.2);
 	Point point4(-0.5, -0.5);
 	Point point5(1.01f, 0.0f);
 
