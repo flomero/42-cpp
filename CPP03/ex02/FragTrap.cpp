@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:57:22 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/10 17:01:48 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:05:20 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 FragTrap::FragTrap() : ClapTrap("FragTrap")
 {
-	_hitpoints = 100;
-	_energyPoints = 100;
-	_attackDamage = 30;
 	std::cout << "FragTrap default constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	_hitpoints = 100;
-	_energyPoints = 100;
-	_attackDamage = 30;
 	std::cout << "FragTrap " << name << " created." << std::endl;
 }
 
@@ -52,6 +46,12 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 
 void FragTrap::highFivesGuys(void)
 {
+	if (_hitpoints <= 0)
+	{
+		std::cout << "FragTrap " << _name
+				  << " is dead and cannot request a high five." << std::endl;
+		return;
+	}
 	std::cout << "FragTrap " << _name << " requests a high five!" << std::endl;
 }
 

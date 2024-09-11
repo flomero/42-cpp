@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:34:26 by flfische          #+#    #+#             */
-/*   Updated: 2024/08/10 15:51:29 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:04:21 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 ScavTrap::ScavTrap() : ClapTrap("ScavTrap")
 {
-	_hitpoints = 100;
-	_energyPoints = 50;
-	_attackDamage = 20;
 	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	_hitpoints = 100;
-	_energyPoints = 50;
-	_attackDamage = 20;
 	std::cout << "ScavTrap " << name << " created." << std::endl;
 }
 
@@ -73,6 +67,12 @@ void ScavTrap::attack(const std::string &target)
 
 void ScavTrap::guardGate()
 {
+	if (_hitpoints <= 0)
+	{
+		std::cout << "ScavTrap " << _name
+				  << " is dead and cannot do anything." << std::endl;
+		return;
+	}
 	if (_inGuardMode)
 	{
 		std::cout << "ScavTrap " << _name << " is already in Gate keeper mode." << std::endl;

@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:57:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 11:12:41 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:01:47 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ public:
 	~FragTrap();
 	void highFivesGuys(void);
 	virtual void attack(const std::string &target);
+
+protected:
+	unsigned int _hitpoints = 100;
+	unsigned int _energyPoints = 100;
+	unsigned int _attackDamage = 30;
 };
