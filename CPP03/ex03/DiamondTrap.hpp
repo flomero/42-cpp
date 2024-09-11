@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:17:17 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 11:14:12 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:15:09 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 {
 private:
 	std::string _name;
-	unsigned int _hitpoints = FragTrap::_hitpoints;
-	unsigned int _energyPoints = ScavTrap::_energyPoints;
-	unsigned int _attackDamage = FragTrap::_attackDamage;
 
 public:
 	DiamondTrap(void);

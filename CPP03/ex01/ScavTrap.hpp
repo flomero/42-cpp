@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:34:30 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 14:05:25 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:08:48 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,4 @@ public:
 
 private:
 	bool _inGuardMode = false;
-	unsigned int _hitpoints = 100;
-	unsigned int _energyPoints = 50;
-	unsigned int _attackDamage = 20;
 };

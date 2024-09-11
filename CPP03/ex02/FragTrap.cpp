@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:57:22 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 14:05:20 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:12:29 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 FragTrap::FragTrap() : ClapTrap("FragTrap")
 {
 	std::cout << "FragTrap default constructor called" << std::endl;
+	_hitpoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "FragTrap " << name << " created." << std::endl;
+	_hitpoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 }
 
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
