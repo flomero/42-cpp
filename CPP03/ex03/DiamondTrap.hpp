@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:17:17 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/10 17:28:43 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:14:12 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ public:
 	DiamondTrap(const DiamondTrap &other);
 	DiamondTrap &operator=(const DiamondTrap &other);
 
-	void attack(const std::string &target);
+	void attack(const std::string &target) override;
+
 	void whoAmI(void);
 };
