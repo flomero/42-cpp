@@ -6,13 +6,15 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:38:33 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 15:46:44 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:06:44 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -32,6 +34,9 @@ int main()
 	Cat cat;
 	dog.makeSound();
 	cat.makeSound();
-
+	std::cout << "-----------------------------------" << std::endl;
+	WrongAnimal *wrongCat = new WrongCat();
+	wrongCat->makeSound();
+	delete (wrongCat);
 	return 0;
 }
