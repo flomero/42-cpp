@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:40:21 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 11:28:46 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:05:42 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 Character::Character(std::string const &name) : name(name)
 {
+	for (int i = 0; i < 4; i++)
+		inventory[i] = nullptr;
 }
 
 Character::~Character()

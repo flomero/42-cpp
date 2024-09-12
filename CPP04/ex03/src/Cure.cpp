@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:40:14 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 11:35:25 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:29:51 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Cure::~Cure()
 {
 }
 
-Cure::Cure(const Cure &other)
+Cure::Cure(const Cure &other) : AMateria()
 {
 	*this = other;
 }

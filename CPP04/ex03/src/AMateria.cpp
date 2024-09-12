@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:31:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 10:48:44 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:08:12 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ AMateria::~AMateria()
 {
 }
 
-AMateria::AMateria(AMateria const &other) : type(other.type)
+AMateria::AMateria(AMateria const &other)
 {
+	*this = other;
 }
 
 AMateria &AMateria::operator=(AMateria const &other)

@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:40:06 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 11:35:20 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:31:15 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Ice::~Ice()
 {
 }
 
-Ice::Ice(const Ice &other)
+Ice::Ice(const Ice &other) : AMateria()
 {
 	*this = other;
 }
