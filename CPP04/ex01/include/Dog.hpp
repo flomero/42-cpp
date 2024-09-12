@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:29:13 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:17:01 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:50:00 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ public:
 	~Dog();
 
 	void makeSound() const override;
+
+	Brain *getBrain() const;
 
 private:
 	Brain *brain;

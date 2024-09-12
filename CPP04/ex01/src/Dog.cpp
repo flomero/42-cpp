@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 13:30:40 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:50:12 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ Dog::~Dog()
 {
 	std::cout << LOG "Dog destructor called" RESET << std::endl;
 	delete brain;
+}
+
+Brain *Dog::getBrain() const
+{
+	return brain;
 }
 
 void Dog::makeSound() const
