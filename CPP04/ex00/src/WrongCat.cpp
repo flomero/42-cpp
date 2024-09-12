@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:35 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 13:12:54 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:26:07 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ WrongCat::~WrongCat()
 	std::cout << LOG "WrongCat destructor called" RESET << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
 {
 	std::cout << LOG "WrongCat copy constructor called" RESET << std::endl;
 	*this = other;

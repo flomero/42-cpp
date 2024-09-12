@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 13:34:40 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:28:33 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Dog::Dog()
 	brain = new Brain();
 }
 
-Dog::Dog(const Dog &other)
+Dog::Dog(const Dog &other) : Animal()
 {
 	std::cout << LOG "Dog copy constructor called" RESET << std::endl;
 	brain = new Brain();
