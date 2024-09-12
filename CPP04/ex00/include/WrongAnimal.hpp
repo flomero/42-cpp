@@ -13,9 +13,7 @@
 #pragma once
 
 #include <iostream>
-
-#define RESET "\033[0m"
-#define LOG "\033[3;96m"
+#include "colors.h"
 
 class WrongAnimal
 {

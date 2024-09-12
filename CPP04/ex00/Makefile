@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/09/12 08:58:21 by flfische         ###   ########.fr        #
+#    Updated: 2024/09/12 09:50:15 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./include
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
+HEADERS = colors.h Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)
