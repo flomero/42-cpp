@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:39:56 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 15:07:40 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:05:05 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ MateriaSource::~MateriaSource()
 
 MateriaSource::MateriaSource(MateriaSource const &other)
 {
+	for (int i = 0; i < 4; i++)
+		source[i] = nullptr;
 	*this = other;
 }
 

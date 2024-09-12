@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:36:57 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 10:37:12 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:10:13 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,23 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+	std::cout << "----- additional tests -----" << std::endl;
+	IMateriaSource *src2 = new MateriaSource();
+	src2->learnMateria(new Ice());
+	src2->learnMateria(new Ice());
+	src2->learnMateria(new Ice());
+	src2->learnMateria(new Ice());
+	ICharacter *tim = new Character("tim");
+	ICharacter *tom = new Character("tom");
+	AMateria *tmp2;
+	tmp2 = src2->createMateria("cure");
+	tim->equip(tmp2);
+	tim->use(0, *tom);
+	tmp2 = src2->createMateria("ice");
+	tim->equip(tmp2);
+	tim->use(0, *tom);
+	delete tim;
+	delete tom;
+	delete src2;
 	return 0;
 }

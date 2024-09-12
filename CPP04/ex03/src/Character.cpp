@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:40:21 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 15:05:42 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:47:15 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ Character::~Character()
 
 Character::Character(Character const &other)
 {
+	for (int i = 0; i < 4; i++)
+		inventory[i] = nullptr;
 	*this = other;
 }
 
@@ -47,6 +49,8 @@ Character &Character::operator=(Character const &other)
 	{
 		if (other.inventory[i])
 			inventory[i] = other.inventory[i]->clone();
+		else
+			inventory[i] = nullptr;
 	}
 	return *this;
 }
