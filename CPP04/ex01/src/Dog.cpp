@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:49:26 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:30:40 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Dog::Dog()
 Dog::Dog(const Dog &other)
 {
 	std::cout << LOG "Dog copy constructor called" RESET << std::endl;
-	brain = new Brain(*other.brain);
+	brain = new Brain();
+	*this = other;
 }
 
 Dog &Dog::operator=(const Dog &other)

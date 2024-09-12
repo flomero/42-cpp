@@ -25,7 +25,7 @@ WrongAnimal::~WrongAnimal()
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
 	std::cout << LOG "WrongAnimal copy constructor called" RESET << std::endl;
-	type = other.type;
+	*this = other;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
