@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:46 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:40:03 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:06:27 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Animal::~Animal()
 Animal::Animal(const Animal &other)
 {
 	std::cout << LOG "Animal copy constructor called" RESET << std::endl;
-	type = other.type;
+	*this = other;
 }
 
 Animal &Animal::operator=(const Animal &other)
