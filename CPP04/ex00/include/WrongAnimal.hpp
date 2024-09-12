@@ -14,16 +14,19 @@
 
 #include <iostream>
 
+#define RESET "\033[0m"
+#define LOG "\033[3;96m"
+
 class WrongAnimal
 {
 protected:
 	std::string type = "Undefined Animal";
 
 public:
-	WrongAnimal() = default;
+	WrongAnimal();
 	WrongAnimal(const WrongAnimal &other);
 	WrongAnimal &operator=(const WrongAnimal &other);
-	~WrongAnimal() = default;
+	~WrongAnimal();
 
 	std::string getType() const;
 

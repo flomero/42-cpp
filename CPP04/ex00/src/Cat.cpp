@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:35 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/11 15:40:51 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 09:41:41 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,27 @@
 
 Cat::Cat()
 {
+	std::cout << LOG "Cat default constructor called" RESET << std::endl;
 	type = "Cat";
+}
+
+Cat::~Cat()
+{
+	std::cout << LOG "Cat destructor called" RESET << std::endl;
+}
+
+Cat::Cat(const Cat &other)
+{
+	std::cout << LOG "Cat copy constructor called" RESET << std::endl;
+	static_cast<void>(other);
+}
+
+Cat &Cat::operator=(const Cat &other)
+{
+	std::cout << LOG "Cat copy assignment operator called" RESET << std::endl;
+	if (this == &other)
+		return (*this);
+	return (*this);
 }
 
 void Cat::makeSound() const
