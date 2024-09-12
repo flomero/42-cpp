@@ -6,8 +6,38 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:31:41 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 10:31:46 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:48:44 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+
+AMateria::AMateria(std::string const &type) : type(type)
+{
+}
+
+AMateria::~AMateria()
+{
+}
+
+AMateria::AMateria(AMateria const &other) : type(other.type)
+{
+}
+
+AMateria &AMateria::operator=(AMateria const &other)
+{
+	if (this == &other)
+		return *this;
+	type = other.type;
+	return *this;
+}
+
+std::string const &AMateria::getType() const
+{
+	return type;
+}
+
+void AMateria::use(ICharacter &target)
+{
+	std::cout << "* uses some materia of type " << type << " on " << target.getName() << " *" << std::endl;
+}

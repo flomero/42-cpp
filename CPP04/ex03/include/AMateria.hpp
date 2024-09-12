@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:31:34 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 10:32:51 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:31:25 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 protected:
 	std::string type;
 
 public:
+	AMateria() = default;
 	AMateria(std::string const &type);
 	virtual ~AMateria();
 	AMateria(AMateria const &other);
