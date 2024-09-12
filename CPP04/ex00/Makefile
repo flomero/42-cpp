@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/09/11 16:55:41 by flfische         ###   ########.fr        #
+#    Updated: 2024/09/12 08:58:21 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 NAME = tests
 
-SRC_DIR = ./
+SRC_DIR = ./src
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJ_DIR = ./obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
-INCLUDE_DIR = ./
+INCLUDE_DIR = ./include
 INCLUDES = -I $(INCLUDE_DIR)
 
 HEADERS = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
