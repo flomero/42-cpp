@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:35 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:49:01 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:34:24 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Cat::Cat()
 Cat::Cat(const Cat &other)
 {
 	std::cout << LOG "Cat copy constructor called" RESET << std::endl;
-	brain = new Brain(*other.brain);
+	brain = new Brain();
+	*this = other;
 }
 
 Cat &Cat::operator=(const Cat &other)

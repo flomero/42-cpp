@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 09:01:11 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:52:38 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:12:50 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ Brain::~Brain()
 Brain::Brain(const Brain &other)
 {
 	std::cout << LOG "Brain copy constructor called" RESET << std::endl;
-	for (int i = 0; i < ideasCount; i++)
-		ideas[i] = other.ideas[i];
+	*this = other;
 }
 
 Brain &Brain::operator=(const Brain &other)

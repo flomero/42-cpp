@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:28:35 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/12 09:48:04 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:06:47 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ WrongCat::~WrongCat()
 WrongCat::WrongCat(const WrongCat &other)
 {
 	std::cout << LOG "WrongCat copy constructor called" RESET << std::endl;
-	static_cast<void>(other);
+	*this = other;
 }
 
 WrongCat &WrongCat::operator=(const WrongCat &other)
