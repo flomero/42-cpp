@@ -12,13 +12,25 @@
 
 #include "WrongAnimal.hpp"
 
+WrongAnimal::WrongAnimal()
+{
+	std::cout << LOG "WrongAnimal default constructor called" RESET << std::endl;
+}
+
+WrongAnimal::~WrongAnimal()
+{
+	std::cout << LOG "WrongAnimal destructor called" RESET << std::endl;
+}
+
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
+	std::cout << LOG "WrongAnimal copy constructor called" RESET << std::endl;
 	type = other.type;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
+	std::cout << LOG "WrongAnimal copy assignment operator called" RESET << std::endl;
 	if (this == &other)
 		return (*this);
 	type = other.type;

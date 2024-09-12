@@ -13,6 +13,7 @@
 #pragma once
 
 #include <iostream>
+#include "colors.h"
 
 class WrongAnimal
 {
@@ -20,10 +21,10 @@ protected:
 	std::string type = "Undefined Animal";
 
 public:
-	WrongAnimal() = default;
+	WrongAnimal();
 	WrongAnimal(const WrongAnimal &other);
 	WrongAnimal &operator=(const WrongAnimal &other);
-	~WrongAnimal() = default;
+	~WrongAnimal();
 
 	std::string getType() const;
 
