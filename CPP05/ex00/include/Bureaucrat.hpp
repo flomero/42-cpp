@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:55:59 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/20 23:12:20 by flfische         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:37:15 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ private:
 	Bureaucrat() = default;
 	std::string const _name;
 	int _grade;
+	void setGrade(int grade);
+
 public:
 	Bureaucrat(std::string const name, int grade);
 	Bureaucrat(Bureaucrat const &other);
@@ -32,21 +34,17 @@ public:
 	void incrementGrade();
 	void decrementGrade();
 
-	class GradeTooHighException;
-	class GradeTooLowException;
-};
+	class GradeTooHighException : public std::exception
+	{
+	public:
+		const char *what() const throw() override;
+	};
 
+	class GradeTooLowException : public std::exception
+	{
+	public:
+		const char *what() const throw() override;
+	};
+};
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat);
-
-class Bureaucrat::GradeTooHighException : public std::exception
-{
-public:
-	const char *what() const throw();
-};
-
-class Bureaucrat::GradeTooLowException : public std::exception
-{
-public:
-	const char *what() const throw();
-};
