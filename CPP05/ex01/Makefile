@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/09/20 22:54:57 by flfische         ###   ########.fr        #
+#    Updated: 2024/09/22 10:41:09 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 NAME = tests
 
 SRC_DIR = ./src
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJ_DIR = ./obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./include
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = Bureaucrat.hpp
+HEADERS = Bureaucrat.hpp Form.hpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)
