@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:18:18 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/22 10:41:52 by flfische         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:42:29 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ Form::Form(std::string const name, int gradeToSign, int gradeToExecute)
 	_signed = false;
 }
 
-Form::Form(Form const &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
+Form::Form(Form const &other)
+	: _name(other._name),
+	  _gradeToSign(other._gradeToSign),
+	  _gradeToExecute(other._gradeToExecute)
 {
 	_signed = other._signed;
 }

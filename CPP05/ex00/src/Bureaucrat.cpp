@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/09/21 19:14:43 by flfische         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:41:48 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void Bureaucrat::decrementGrade()
 	setGrade(_grade + 1);
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &other) : _name(other._name), _grade(other._grade)
+Bureaucrat::Bureaucrat(Bureaucrat const &other)
+	: _name(other._name), _grade(other._grade)
 {
 }
 
