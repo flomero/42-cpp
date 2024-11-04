@@ -6,12 +6,15 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:18:18 by flfische          #+#    #+#             */
-/*   Updated: 2024/10/12 16:42:29 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:36:34 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
+#include "Bureaucrat.hpp"
+
+#pragma region Constructors etc
 Form::Form(std::string const name, int gradeToSign, int gradeToExecute)
 	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
@@ -37,7 +40,9 @@ Form &Form::operator=(Form const &other)
 	_signed = other._signed;
 	return *this;
 }
+#pragma endregion
 
+#pragma region Getters
 bool Form::getSigned() const
 {
 	return _signed;
@@ -57,29 +62,36 @@ std::string const &Form::getName() const
 {
 	return _name;
 }
+#pragma endregion
 
+#pragma region Member functions
 void Form::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeToSign)
 		throw Form::GradeTooLowException();
 	_signed = true;
 }
+#pragma endregion
 
+#pragma region Exceptions
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return "Grade is too high";
+	return "Grade is too high.";
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return "Grade is too low";
+	return "Grade is too low.";
 }
+#pragma endregion
 
+#pragma region Ostream
 std::ostream &operator<<(std::ostream &out, Form const &form)
 {
-	out << "----- " << form.getName() << " -----" << std::endl;
-	out << "Signed: " << form.getSigned() << std::endl;
-	out << "Grade to sign: " << form.getGradeToSign() << std::endl;
-	out << "Grade to execute: " << form.getGradeToExecute() << std::endl;
+	out << "------------ " << form.getName() << " ------------" << std::endl
+		<< "Signed:\t\t\t" << (form.getSigned() ? "✅" : "❌") << std::endl
+		<< "Grade to sign:\t\t" << form.getGradeToSign() << std::endl
+		<< "Grade to execute:\t" << form.getGradeToExecute() << std::endl;
 	return out;
 }
+#pragma endregion

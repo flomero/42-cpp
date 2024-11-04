@@ -6,11 +6,13 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:22:07 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:27:06 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+#include "Form.hpp"
 
 #pragma region Constructors etc
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
@@ -63,6 +65,11 @@ void Bureaucrat::incrementGrade()
 void Bureaucrat::decrementGrade()
 {
 	setGrade(_grade + 1);
+}
+
+void Bureaucrat::signForm(Form &form) const
+{
+	form.beSigned(*this);
 }
 #pragma endregion
 
