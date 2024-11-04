@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/10/12 16:49:45 by flfische         ###   ########.fr        #
+#    Updated: 2024/11/04 17:24:23 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./include
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = Bureaucrat.hpp Form.hpp
+HEADERS = Bureaucrat.hpp AForm.hpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)

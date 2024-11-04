@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:55:59 by flfische          #+#    #+#             */
-/*   Updated: 2024/10/12 16:41:39 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:15:37 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class Bureaucrat
 		~Bureaucrat() = default;
 		Bureaucrat &operator=(Bureaucrat const &other);
 
-		std::string const &getName() const;
-		int getGrade() const;
+		[[nodiscard]] std::string const &getName() const;
+		[[nodiscard]] int getGrade() const;
 
 		void incrementGrade();
 		void decrementGrade();
