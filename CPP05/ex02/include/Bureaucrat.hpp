@@ -6,13 +6,15 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:55:59 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:22:44 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:21:57 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+
+class AForm;
 
 class Bureaucrat
 {
@@ -33,6 +35,8 @@ class Bureaucrat
 
 		void incrementGrade();
 		void decrementGrade();
+		void signForm(AForm &form) const;
+		void executeForm(AForm const &form) const;
 
 		class GradeTooHighException : public std::exception
 		{

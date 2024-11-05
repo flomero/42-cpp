@@ -14,8 +14,6 @@
 
 #include <iostream>
 
-#include "Bureaucrat.hpp"
-
 class Bureaucrat;
 
 class AForm
@@ -24,8 +22,8 @@ class AForm
 		AForm() = default;
 		std::string const _name;
 		bool _signed = false;
-		int const _gradeToSign;
-		int const _gradeToExecute;
+		int const _gradeToSign = 1;
+		int const _gradeToExecute = 1;
 
 	public:
 		AForm(std::string const name, int gradeToSign, int gradeToExecute);
@@ -33,14 +31,15 @@ class AForm
 		~AForm() = default;
 		AForm &operator=(AForm const &other);
 
-		std::string const &getName() const;
-		bool getSigned() const;
-		int getGradeToSign() const;
-		int getGradeToExecute() const;
+		[[nodiscard]] std::string const &getName() const;
+		[[nodiscard]] bool getSigned() const;
+		[[nodiscard]] int getGradeToSign() const;
+		[[nodiscard]] int getGradeToExecute() const;
 
 		void beSigned(Bureaucrat const &bureaucrat);
 
-		virtual void execute(Bureaucrat const &executor) const = 0;
+		void execute(Bureaucrat const &executor) const;
+		virtual void executeAction(Bureaucrat const &executor) const = 0;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -53,6 +52,12 @@ class AForm
 			public:
 				const char *what() const throw() override;
 		};
+
+		class FormNotSignedException : public std::exception
+		{
+			public:
+				const char *what() const throw() override;
+		};
 };
 
-std::ostream &operator<<(std::ostream &out, AForm const &AForm);
+std::ostream &operator<<(std::ostream &out, AForm const &form);

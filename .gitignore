@@ -7,6 +7,9 @@ replace
 harl
 harlFilter
 
+# random
+*_shrubbery
+
 # Prerequisites
 *.d
 

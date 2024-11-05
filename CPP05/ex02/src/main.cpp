@@ -6,11 +6,20 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:08 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:24:56 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:17:36 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-int main() {}
+int main()
+{
+	Bureaucrat bureaucrat("Bureaucrat", 1);
+	ShrubberyCreationForm form("target");
+
+	bureaucrat.signForm(form);
+	bureaucrat.executeForm(form);
+
+	return 0;
+}
