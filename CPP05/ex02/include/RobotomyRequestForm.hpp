@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:42:05 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 12:45:53 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:24:57 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 class RobotomyRequestForm : public AForm
 {
 	private:
-		std::string _target;
 		RobotomyRequestForm() = delete;
 
 	public:
@@ -27,5 +26,4 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &assign);
 
 		void executeAction(Bureaucrat const &executor) const override;
-		std::string const &getTarget() const;
 };

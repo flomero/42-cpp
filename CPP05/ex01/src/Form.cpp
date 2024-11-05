@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:18:18 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:36:34 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:19:13 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ const char *Form::GradeTooLowException::what() const throw()
 #pragma region Ostream
 std::ostream &operator<<(std::ostream &out, Form const &form)
 {
-	out << "------------ " << form.getName() << " ------------" << std::endl
-		<< "Signed:\t\t\t" << (form.getSigned() ? "✅" : "❌") << std::endl
-		<< "Grade to sign:\t\t" << form.getGradeToSign() << std::endl
-		<< "Grade to execute:\t" << form.getGradeToExecute() << std::endl;
+	out << "Form " << form.getName()
+		<< " (S: " << (form.getSigned() ? "✅" : "❌")
+		<< ", GS: " << form.getGradeToSign()
+		<< ", GE: " << form.getGradeToExecute() << ")";
 	return out;
 }
 #pragma endregion

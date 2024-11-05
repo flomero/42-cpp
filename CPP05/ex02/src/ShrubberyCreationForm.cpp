@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:46:48 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 12:24:20 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:41:07 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 
 #pragma region Constructors etc.
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target)
-	: AForm("ShrubberyCreationForm", 145, 137), _target(target)
+	: AForm("ShrubberyCreationForm", 145, 137)
 {
+	setTarget(target);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other)
-	: AForm(other), _target(other._target)
+	: AForm(other)
 {
+	setTarget(other.getTarget());
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(
@@ -30,16 +32,9 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(
 {
 	if (this != &other)
 	{
-		_target = other._target;
+		AForm::operator=(other);
 	}
 	return (*this);
-}
-#pragma endregion
-
-#pragma region Getters
-std::string const &ShrubberyCreationForm::getTarget() const
-{
-	return _target;
 }
 #pragma endregion
 
@@ -47,7 +42,7 @@ std::string const &ShrubberyCreationForm::getTarget() const
 void ShrubberyCreationForm::executeAction(Bureaucrat const &executor) const
 {
 	(void)executor;
-	std::ofstream file(_target + "_shrubbery");
+	std::ofstream file(getTarget() + "_shrubbery");
 	if (!file.is_open())
 		throw std::runtime_error("Could not open file for writing");
 	file << "      /\\      " << std::endl;

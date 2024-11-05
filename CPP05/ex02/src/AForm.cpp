@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:18:18 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 12:14:10 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:18:12 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ AForm::AForm(AForm const &other)
 	  _gradeToExecute(other._gradeToExecute)
 {
 	_signed = other._signed;
+	_target = other._target;
 }
 
 AForm &AForm::operator=(AForm const &other)
@@ -38,6 +39,7 @@ AForm &AForm::operator=(AForm const &other)
 	if (this == &other)
 		return *this;
 	_signed = other._signed;
+	_target = other._target;
 	return *this;
 }
 #pragma endregion
@@ -61,6 +63,18 @@ int AForm::getGradeToExecute() const
 std::string const &AForm::getName() const
 {
 	return _name;
+}
+
+std::string const &AForm::getTarget() const
+{
+	return _target;
+}
+#pragma endregion
+
+#pragma region Setters
+void AForm::setTarget(std::string const &target)
+{
+	_target = target;
 }
 #pragma endregion
 
@@ -102,10 +116,12 @@ const char *AForm::FormNotSignedException::what() const throw()
 #pragma region Ostream
 std::ostream &operator<<(std::ostream &out, AForm const &form)
 {
-	out << "------------ " << form.getName() << " ------------" << std::endl
-		<< "Signed:\t\t\t" << (form.getSigned() ? "✅" : "❌") << std::endl
-		<< "Grade to sign:\t\t" << form.getGradeToSign() << std::endl
-		<< "Grade to execute:\t" << form.getGradeToExecute() << std::endl;
+	out << "Form " << form.getName()
+		<< " (S: " << (form.getSigned() ? "✅" : "❌")
+		<< ", GS: " << form.getGradeToSign()
+		<< ", GE: " << form.getGradeToExecute()
+		<< ", T: " << (form.getTarget().empty() ? "none" : form.getTarget())
+		<< ")";
 	return out;
 }
 #pragma endregion

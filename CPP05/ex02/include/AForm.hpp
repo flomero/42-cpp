@@ -19,11 +19,12 @@ class Bureaucrat;
 class AForm
 {
 	private:
-		AForm() = default;
+		AForm() = delete;
 		std::string const _name;
+		std::string _target;
 		bool _signed = false;
-		int const _gradeToSign = 1;
-		int const _gradeToExecute = 1;
+		int const _gradeToSign;
+		int const _gradeToExecute;
 
 	public:
 		AForm(std::string const name, int gradeToSign, int gradeToExecute);
@@ -35,6 +36,9 @@ class AForm
 		[[nodiscard]] bool getSigned() const;
 		[[nodiscard]] int getGradeToSign() const;
 		[[nodiscard]] int getGradeToExecute() const;
+		[[nodiscard]] std::string const &getTarget() const;
+
+		void setTarget(std::string const &target);
 
 		void beSigned(Bureaucrat const &bureaucrat);
 

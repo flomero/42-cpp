@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:41:58 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 13:09:13 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:40:21 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 #pragma region Constructors etc
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-	: AForm("RobotomyRequestForm", 72, 45), _target(target)
+	: AForm("RobotomyRequestForm", 72, 45)
 {
+	setTarget(target);
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy)
-	: AForm(copy), _target(copy._target)
+	: AForm(copy)
 {
+	setTarget(copy.getTarget());
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(
@@ -28,16 +30,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(
 {
 	if (this != &assign)
 	{
-		_target = assign._target;
+		AForm::operator=(assign);
 	}
 	return (*this);
-}
-#pragma endregion
-
-#pragma region Getters
-std::string const &RobotomyRequestForm::getTarget() const
-{
-	return _target;
 }
 #pragma endregion
 
@@ -48,9 +43,9 @@ void RobotomyRequestForm::executeAction(Bureaucrat const &executor) const
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	std::cout << "*drilling noises* ";
 	if (std::rand() % 2)
-		std::cout << _target << " has been robotomized successfully"
+		std::cout << getTarget() << " has been robotomized successfully"
 				  << std::endl;
 	else
-		std::cout << _target << " robotomization failed" << std::endl;
+		std::cout << getTarget() << " robotomization failed" << std::endl;
 }
 #pragma endregion

@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 12:22:24 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:16:45 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,30 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(AForm &form) const
 {
-	form.beSigned(*this);
+	try
+	{
+		form.beSigned(*this);
+		std::cout << *this << " signed " << form << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << *this << " cannot sign " << form << " because " << e.what()
+				  << std::endl;
+	}
 }
 
 void Bureaucrat::executeForm(AForm const &form) const
 {
-	form.execute(*this);
+	try
+	{
+		form.execute(*this);
+		std::cout << *this << " executes " << form << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << *this << " cannot execute " << form << " because "
+				  << e.what() << std::endl;
+	}
 }
 #pragma endregion
 
@@ -82,7 +100,7 @@ void Bureaucrat::executeForm(AForm const &form) const
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat)
 {
 	out << bureaucrat.getName() << ", bureaucrat grade "
-		<< bureaucrat.getGrade() << ".";
+		<< bureaucrat.getGrade();
 	return out;
 }
 #pragma endregion

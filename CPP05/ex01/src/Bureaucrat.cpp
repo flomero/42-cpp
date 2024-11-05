@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:27:06 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:21:36 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,16 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form &form) const
 {
-	form.beSigned(*this);
+	try
+	{
+		form.beSigned(*this);
+		std::cout << *this << " signed " << form << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << *this << " couldn't sign " << form << " because "
+				  << e.what() << std::endl;
+	}
 }
 #pragma endregion
 
@@ -77,7 +86,7 @@ void Bureaucrat::signForm(Form &form) const
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat)
 {
 	out << bureaucrat.getName() << ", bureaucrat grade "
-		<< bureaucrat.getGrade() << ".";
+		<< bureaucrat.getGrade();
 	return out;
 }
 #pragma endregion
