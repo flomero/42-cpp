@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:55:59 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 16:15:37 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:24:57 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class Bureaucrat
 {
 	private:
-		Bureaucrat() = default;
+		Bureaucrat() = delete;
 		std::string const _name;
 		int _grade;
 		void setGrade(int grade);

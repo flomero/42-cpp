@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:11:22 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 14:41:34 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:30:26 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(
 void PresidentialPardonForm::executeAction(Bureaucrat const &executor) const
 {
 	(void)executor;
-	std::cout << AForm::getTarget() << " has been pardoned by Zafod Beeblebrox"
+	std::cout << AForm::getTarget() << " has been pardoned by Zaphod Beeblebrox"
 			  << std::endl;
 }
 #pragma endregion

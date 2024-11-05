@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:56:04 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/05 15:16:45 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:22:56 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void Bureaucrat::signForm(AForm &form) const
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << *this << " cannot sign " << form << " because " << e.what()
-				  << std::endl;
+		std::cerr << *this << " couldn't sign " << form << " because "
+				  << e.what() << std::endl;
 	}
 }
 
@@ -86,11 +86,11 @@ void Bureaucrat::executeForm(AForm const &form) const
 	try
 	{
 		form.execute(*this);
-		std::cout << *this << " executes " << form << std::endl;
+		std::cout << *this << " executed " << form << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << *this << " cannot execute " << form << " because "
+		std::cerr << *this << " couldn't execute " << form << " because "
 				  << e.what() << std::endl;
 	}
 }

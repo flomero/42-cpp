@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:18:12 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/04 17:44:09 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:24:33 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ class Bureaucrat;
 class Form
 {
 	private:
-		Form() = default;
+		Form() = delete;
 		std::string const _name;
 		bool _signed = false;
-		int const _gradeToSign = 1;
-		int const _gradeToExecute = 1;
+		int const _gradeToSign;
+		int const _gradeToExecute;
 
 	public:
 		Form(std::string const name, int gradeToSign, int gradeToExecute);
