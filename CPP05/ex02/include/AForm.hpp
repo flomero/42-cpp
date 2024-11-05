@@ -29,7 +29,7 @@ class AForm
 	public:
 		AForm(std::string const name, int gradeToSign, int gradeToExecute);
 		AForm(AForm const &other);
-		~AForm() = default;
+		virtual ~AForm() = default;
 		AForm &operator=(AForm const &other);
 
 		[[nodiscard]] std::string const &getName() const;
