@@ -6,8 +6,14 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 20:18:29 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/11 20:18:33 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:24:51 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#include "Base.hpp"
+
+class A : public Base
+{
+};

@@ -6,8 +6,14 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 20:18:14 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/11 20:18:21 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:24:15 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+class Base
+{
+	public:
+		virtual ~Base() = default;
+};

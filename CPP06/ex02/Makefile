@@ -6,7 +6,7 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/11/11 20:17:47 by flfische         ###   ########.fr        #
+#    Updated: 2024/11/11 20:26:27 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 NAME = tests
 
 SRC_DIR = ./src
-SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp 
+SRC = main.cpp 
 
 OBJ_DIR = ./obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
