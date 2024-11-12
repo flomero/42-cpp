@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:53:55 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/12 09:38:30 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:43:36 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 #define RESET "\033[0m"
 #define HEADER(X) std::cout << CYAN << X << RESET << std::endl
 
-void printArray(Array<int>& arr)
+template <typename T>
+void printArray(Array<T>& arr)
 {
+	std::cout << "Size:\t\t" << arr.size() << std::endl;
+	std::cout << "Content:\t";
 	for (unsigned int i = 0; i < arr.size(); i++) std::cout << arr[i] << " ";
 	std::cout << std::endl;
 }
@@ -57,6 +60,10 @@ int main()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	Array<int> arr4;
+	HEADER("Array 4 - Default Constructed (Size 0):");
+	printArray(arr4);
 
 	return 0;
 }
