@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:07:12 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/11 17:44:17 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:52:22 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ScalarConverter
 		ScalarConverter() = delete;
 		ScalarConverter(const ScalarConverter &other) = delete;
 		ScalarConverter &operator=(const ScalarConverter &other) = delete;
-		~ScalarConverter() = default;
+		~ScalarConverter() = delete;
 
 		static bool isChar(const std::string &str);
 		static bool isInt(const std::string &str);
