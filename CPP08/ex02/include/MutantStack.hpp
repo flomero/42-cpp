@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:18:44 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/13 16:48:38 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:39:53 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ class MutantStack : public std::stack<T>
 		typedef typename std::stack<T>::container_type::iterator iterator;
 		iterator begin();
 		iterator end();
+
+		typedef typename std::stack<T>::container_type::const_iterator
+			const_iterator;
+		const_iterator begin() const;
+		const_iterator end() const;
 };

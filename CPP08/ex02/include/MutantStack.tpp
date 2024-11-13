@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:18:09 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/13 16:48:03 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:40:10 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ typename MutantStack<T>::iterator MutantStack<T>::begin()
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end()
+{
+	return std::stack<T>::c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::begin() const
+{
+	return std::stack<T>::c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const
 {
 	return std::stack<T>::c.end();
 }
