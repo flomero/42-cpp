@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:02:27 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/13 16:04:53 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:52:02 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ void testIterator()
 	std::cout << sp << std::endl;
 }
 
+void testSpecific()
+{
+	HEADER("Test with specific numbers");
+	Span sp = Span(5);
+	sp.addNumber(1);
+	sp.addNumber(20);
+	sp.addNumber(30);
+	sp.addNumber(40);
+	sp.addNumber(50);
+	std::cout << sp << std::endl;
+	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+}
+
 int main()
 {
 	srand(time(NULL));
@@ -85,6 +99,7 @@ int main()
 	testSpan(1000);
 	testSpan(10000);
 	testSpan(10000, -100000, 100000);
+	testSpecific();
 
 	testExceptionFull();
 	testExceptionEmpty();
