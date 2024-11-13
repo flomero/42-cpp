@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:03:22 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/12 19:53:15 by flfische         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:54:53 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void Span::addNumber(int number)
 int Span::shortestSpan()
 {
 	if (_numbers.size() <= 1)
-		throw std::runtime_error("Span is too short");
+		throw std::length_error("Span is too short");
 	std::vector<int> sorted = _numbers;
 	std::sort(sorted.begin(), sorted.end());
 	int shortest = sorted[1] - sorted[0];
@@ -52,8 +52,32 @@ int Span::shortestSpan()
 int Span::longestSpan()
 {
 	if (_numbers.size() <= 1)
-		throw std::runtime_error("Span is too short");
+		throw std::length_error("Span is too short");
 	std::vector<int> sorted = _numbers;
 	std::sort(sorted.begin(), sorted.end());
 	return sorted.back() - sorted.front();
+}
+
+unsigned int Span::size() const
+{
+	return _numbers.size();
+}
+
+std::vector<int> const &Span::getNumbers() const
+{
+	return _numbers;
+}
+
+std::ostream &operator<<(std::ostream &os, Span const &span)
+{
+	os << "Span(" << span.size() << "): {";
+	std::vector<int> const &numbers = span.getNumbers();
+	for (size_t i = 0; i < numbers.size(); i++)
+	{
+		if (i > 0)
+			os << ", ";
+		os << numbers[i];
+	}
+	os << "}";
+	return os;
 }
