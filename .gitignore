@@ -6,6 +6,8 @@ replace
 *.replace
 harl
 harlFilter
+*.csv
+btc
 
 # random
 *_shrubbery
