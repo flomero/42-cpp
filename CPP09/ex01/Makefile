@@ -6,14 +6,14 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/11/14 16:53:00 by flfische         ###   ########.fr        #
+#    Updated: 2024/11/14 17:03:04 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
-NAME = btc
+NAME = RPN
 
 SRC_DIR = ./src
 SRC = main.cpp RPN.cpp

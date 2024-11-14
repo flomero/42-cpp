@@ -8,6 +8,8 @@ harl
 harlFilter
 *.csv
 btc
+input.txt
+RPN
 
 # random
 *_shrubbery
