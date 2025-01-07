@@ -6,14 +6,14 @@
 #    By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 11:14:38 by flfische          #+#    #+#              #
-#    Updated: 2024/11/15 10:48:36 by flfische         ###   ########.fr        #
+#    Updated: 2024/11/15 10:55:49 by flfische         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
-NAME = RPN
+NAME = PmergeMe
 
 SRC_DIR = ./src
 SRC = main.cpp PmergeMe.cpp
@@ -24,11 +24,12 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 INCLUDE_DIR = ./include
 INCLUDES = -I $(INCLUDE_DIR)
 
-HEADERS = PmergeMe.hpp
+HEADERS = PmergeMe.hpp PmergeMe.tpp
 
 vpath %.hpp $(INCLUDE_DIR)
 vpath %.h $(INCLUDE_DIR)
 vpath %.cpp $(SRC_DIR)
+vpath %.tpp $(INCLUDE_DIR)
 
 all: $(NAME)
 
