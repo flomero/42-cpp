@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/01/07 14:36:44 by flfische         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:46:54 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,27 +84,27 @@ int main(int argc, char* argv[])
 	PmergeMe merge;
 	clock_t start_vec;
 	clock_t end_vec;
-	clock_t start_deq;
-	clock_t end_deq;
+	// clock_t start_deq;
+	// clock_t end_deq;
 
 	std::cout << "Before:\t" << vec << std::endl;
 	start_vec = clock();
 	merge.sort_vec(vec);
 	end_vec = clock();
-	start_deq = clock();
-	merge.sort_deq(deq);
-	end_deq = clock();
-	std::cout << "After:\t" << vec << std::endl;
-	std::cout << std::fixed << std::setprecision(5);
-	std::cout << "Time to process a range of " << vec.size()
-			  << " elements with "
-			  << "std::vector<int>:\t"
-			  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
-			  << std::endl;
-	std::cout << "Time to process a range of " << deq.size()
-			  << " elements with "
-			  << "std::deque<int> :\t"
-			  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
-			  << std::endl;
+	// start_deq = clock();
+	// merge.sort_deq(deq);
+	// end_deq = clock();
+	// std::cout << "After:\t" << vec << std::endl;
+	// std::cout << std::fixed << std::setprecision(5);
+	// std::cout << "Time to process a range of " << vec.size()
+	// 		  << " elements with "
+	// 		  << "std::vector<int>:\t"
+	// 		  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
+	// 		  << std::endl;
+	// std::cout << "Time to process a range of " << deq.size()
+	// 		  << " elements with "
+	// 		  << "std::deque<int> :\t"
+	// 		  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
+	// 		  << std::endl;
 	return 0;
 }
