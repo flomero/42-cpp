@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:45:25 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/14 15:02:21 by flfische         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:58:19 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ class BitcoinExchange
 	public:
 		BitcoinExchange() = default;
 		~BitcoinExchange() = default;
+		BitcoinExchange(const BitcoinExchange &other) = delete;
+		BitcoinExchange &operator=(const BitcoinExchange &other) = delete;
 
 		void parseDatabase();
 		void printDatabase();
