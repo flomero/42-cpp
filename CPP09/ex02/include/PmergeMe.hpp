@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/10 20:44:14 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/10 22:12:40 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,18 @@ void PmergeMe::sort(T &container, int level)
 	T leftover;
 
 	main.insert(main.end(), container.begin(),
-				std::next(container.begin(), 2 * level * pairs));
+				std::next(container.begin(), level * 2));
+
+	for (int i = level * 2; i < 2 * level * pairs; i += level * 2)
+	{
+		pending.insert(pending.end(), std::next(container.begin(), i),
+					   std::next(container.begin(), i + level));
+		if (i + level < 2 * level * pairs)
+		{
+			main.insert(main.end(), std::next(container.begin(), i + level),
+						std::next(container.begin(), i + level * 2));
+		}
+	}
 	int check = container.size() % (level * 2);
 	if (check)
 	{
@@ -127,4 +138,16 @@ void PmergeMe::sort(T &container, int level)
 	for (I it = leftover.begin(); it != leftover.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl << std::endl;
+
+	if (pending.empty() && leftover.empty())
+	{
+		container = main;
+		return;
+	}
+	else if (pending.empty())
+	{
+		container = main;
+		container.insert(container.end(), leftover.begin(), leftover.end());
+		return;
+	}
 }
