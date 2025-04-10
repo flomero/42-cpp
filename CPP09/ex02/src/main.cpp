@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/01/08 17:46:54 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:12:37 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-#include "PmergeMe.tpp"
+#include "PmergeMe.hpp"
 
 bool isInteger(const std::string& str)
 {
