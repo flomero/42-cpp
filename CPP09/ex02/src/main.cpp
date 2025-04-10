@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/06 17:12:37 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:20:06 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 	// clock_t start_deq;
 	// clock_t end_deq;
 
-	std::cout << "Before:\t" << vec << std::endl;
+	std::cout << "Before:\n" << vec << std::endl;
 	start_vec = clock();
 	merge.sort_vec(vec);
 	end_vec = clock();
