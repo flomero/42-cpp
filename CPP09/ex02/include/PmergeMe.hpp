@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/10 20:21:19 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:44:14 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,47 @@ void PmergeMe::sort(T &container, int level)
 		end = std::next(end, level * 2);
 	}
 	// print the container
-	debug("Container after swapping pairs: " + std::to_string(level));
-	for (I it = container.begin(); it != container.end(); ++it)
+	// debug("Container after swapping pairs: " + std::to_string(level));
+	// for (I it = container.begin(); it != container.end(); ++it)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	sort(container, level * 2);
+
+	T main;
+	T pending;
+	T leftover;
+
+	main.insert(main.end(), container.begin(),
+				std::next(container.begin(), 2 * level * pairs));
+	int check = container.size() % (level * 2);
+	if (check)
+	{
+		if (check > level)
+			pending.insert(
+				pending.end(), std::next(container.begin(), 2 * level * pairs),
+				std::next(container.begin(), 2 * level * pairs + level));
+
+		if (check - level > 0)
+			leftover.insert(
+				leftover.end(),
+				std::next(container.begin(), 2 * level * pairs + level),
+				container.end());
+		else
+			leftover.insert(leftover.end(),
+							std::next(container.begin(), 2 * level * pairs),
+							container.end());
+	}
+
+	debug("Main: " + std::to_string(level));
+	for (I it = main.begin(); it != main.end(); ++it) std::cout << *it << " ";
+	std::cout << std::endl;
+	debug("Pending: " + std::to_string(level) + "(" + std::to_string(check) +
+		  ")");
+	for (I it = pending.begin(); it != pending.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
-	sort(container, level * 2);
+	debug("Leftover: " + std::to_string(level));
+	for (I it = leftover.begin(); it != leftover.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl << std::endl;
 }
