@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/10 22:12:40 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:55:37 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,24 @@ class PmergeMe
 
 		template <typename T>
 		void sort(T &container, int level = 1);
+};
+
+template <typename T>
+struct container_of
+{
+		typedef std::vector<T> type;
+};
+
+template <typename V>
+struct container_of<std::deque<V>>
+{
+		typedef std::deque<std::deque<V>> type;
+};
+
+template <typename V>
+struct container_of<std::vector<V>>
+{
+		typedef std::vector<std::vector<V>> type;
 };
 
 template <typename T>
@@ -90,30 +108,51 @@ void PmergeMe::sort(T &container, int level)
 	// std::cout << std::endl;
 	sort(container, level * 2);
 
-	T main;
-	T pending;
+	typename container_of<T>::type main_groups;
+	typename container_of<T>::type pending_groups;
 	T leftover;
 
-	main.insert(main.end(), container.begin(),
-				std::next(container.begin(), level * 2));
+	T first_main_group;
+	first_main_group.insert(first_main_group.end(), container.begin(),
+							std::next(container.begin(), level));
+	main_groups.push_back(first_main_group);
+
+	T first_pend_group;
+	first_pend_group.insert(first_pend_group.end(),
+							std::next(container.begin(), level),
+							std::next(container.begin(), level * 2));
+	main_groups.push_back(first_pend_group);
 
 	for (int i = level * 2; i < 2 * level * pairs; i += level * 2)
 	{
-		pending.insert(pending.end(), std::next(container.begin(), i),
-					   std::next(container.begin(), i + level));
+		T pending_group;
+		pending_group.insert(pending_group.end(),
+							 std::next(container.begin(), i),
+							 std::next(container.begin(), i + level));
+		pending_groups.push_back(pending_group);
+
 		if (i + level < 2 * level * pairs)
 		{
-			main.insert(main.end(), std::next(container.begin(), i + level),
-						std::next(container.begin(), i + level * 2));
+			T main_group;
+			main_group.insert(main_group.end(),
+							  std::next(container.begin(), i + level),
+							  std::next(container.begin(), i + level * 2));
+			main_groups.push_back(main_group);
 		}
 	}
+
 	int check = container.size() % (level * 2);
 	if (check)
 	{
 		if (check > level)
-			pending.insert(
-				pending.end(), std::next(container.begin(), 2 * level * pairs),
+		{
+			T pending_group;
+			pending_group.insert(
+				pending_group.end(),
+				std::next(container.begin(), 2 * level * pairs),
 				std::next(container.begin(), 2 * level * pairs + level));
+			pending_groups.push_back(pending_group);
+		}
 
 		if (check - level > 0)
 			leftover.insert(
@@ -126,28 +165,29 @@ void PmergeMe::sort(T &container, int level)
 							container.end());
 	}
 
-	debug("Main: " + std::to_string(level));
-	for (I it = main.begin(); it != main.end(); ++it) std::cout << *it << " ";
+	// Debug output for groups
+	debug("Main groups: " + std::to_string(level));
+	for (auto &group : main_groups)
+	{
+		std::cout << "[ ";
+		for (auto it = group.begin(); it != group.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << "] ";
+	}
 	std::cout << std::endl;
-	debug("Pending: " + std::to_string(level) + "(" + std::to_string(check) +
-		  ")");
-	for (I it = pending.begin(); it != pending.end(); ++it)
-		std::cout << *it << " ";
+
+	debug("Pending groups: " + std::to_string(level));
+	for (auto &group : pending_groups)
+	{
+		std::cout << "[ ";
+		for (auto it = group.begin(); it != group.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << "] ";
+	}
 	std::cout << std::endl;
+
 	debug("Leftover: " + std::to_string(level));
-	for (I it = leftover.begin(); it != leftover.end(); ++it)
+	for (auto it = leftover.begin(); it != leftover.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl << std::endl;
-
-	if (pending.empty() && leftover.empty())
-	{
-		container = main;
-		return;
-	}
-	else if (pending.empty())
-	{
-		container = main;
-		container.insert(container.end(), leftover.begin(), leftover.end());
-		return;
-	}
 }
