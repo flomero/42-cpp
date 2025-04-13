@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/13 18:55:37 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:45:49 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class PmergeMe
 		void sort_deq(std::deque<int> &deq);
 		void printCount();
 
+		static int comp_count;
+
 	private:
 		bool _debug = true;
 		void debug(std::string str);
@@ -34,15 +36,13 @@ class PmergeMe
 		PmergeMe(const PmergeMe &src) = default;
 		PmergeMe &operator=(const PmergeMe &src) = default;
 
-		static int comp_count;
-		template <typename T>
-		bool comp(T a, T b);
-
 		template <typename T>
 		void swap_pair(T it, int level);
 
 		template <typename T>
 		void sort(T &container, int level = 1);
+
+		int jacobsthal(int n);
 };
 
 template <typename T>
@@ -64,11 +64,28 @@ struct container_of<std::vector<V>>
 };
 
 template <typename T>
-bool PmergeMe::comp(T a, T b)
+bool comp(T a, T b)
 {
-	comp_count++;
+	PmergeMe::comp_count++;
+	return a > b;
+}
+
+template <typename T>
+bool comp_iterator(T a, T b)
+{
+	PmergeMe::comp_count++;
 	return *a > *b;
 }
+
+template <typename T>
+struct GroupComparator
+{
+		bool operator()(const T &a, const T &b) const
+		{
+			PmergeMe::comp_count++;
+			return a.back() < b.back();	 // upper_bound needs < comparison
+		}
+};
 
 template <typename T>
 void PmergeMe::swap_pair(T pairOneBiggest, int level)
@@ -87,6 +104,7 @@ template <typename T>
 void PmergeMe::sort(T &container, int level)
 {
 	typedef typename T::iterator I;
+	typedef typename container_of<T>::type::iterator ContainerI;
 	int pairs = container.size() / (level * 2);
 	if (pairs == 0)
 		return;
@@ -96,7 +114,7 @@ void PmergeMe::sort(T &container, int level)
 
 	for (int i = 0; i < pairs; ++i)
 	{
-		if (comp(start, end))
+		if (comp_iterator(start, end))
 			swap_pair(start, level);
 		start = std::next(start, level * 2);
 		end = std::next(end, level * 2);
@@ -165,29 +183,121 @@ void PmergeMe::sort(T &container, int level)
 							container.end());
 	}
 
-	// Debug output for groups
-	debug("Main groups: " + std::to_string(level));
+	if (_debug)
+	{
+		debug("Main groups: " + std::to_string(level));
+		for (auto &group : main_groups)
+		{
+			std::cout << "[ ";
+			for (auto it = group.begin(); it != group.end(); ++it)
+				std::cout << *it << " ";
+			std::cout << "] ";
+		}
+		std::cout << std::endl;
+
+		debug("Pending groups: " + std::to_string(level));
+		for (auto &group : pending_groups)
+		{
+			std::cout << "[ ";
+			for (auto it = group.begin(); it != group.end(); ++it)
+				std::cout << *it << " ";
+			std::cout << "] ";
+		}
+		std::cout << std::endl;
+
+		debug("Leftover: " + std::to_string(level));
+		for (auto it = leftover.begin(); it != leftover.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << std::endl << std::endl;
+	}
+
+	int prev = jacobsthal(1);
+	int inserted = 0;
+	int i = 1;
+	while (i++)
+	{
+		int current = jacobsthal(i);
+		int diff = current - prev;
+		if (diff > static_cast<int>(pending_groups.size()))
+			break;
+		int offset = 0;
+		ContainerI pend = std::next(pending_groups.begin(), diff - 1);
+		ContainerI mainBound =
+			std::next(main_groups.begin(), current + inserted);
+		while (diff--)
+		{
+			ContainerI pos = std::upper_bound(
+				main_groups.begin(), mainBound, *pend,
+				GroupComparator<typename container_of<T>::type::value_type>());
+			ContainerI insertedIter = main_groups.insert(pos, *pend);
+			pend = pending_groups.erase(pend);
+			pend = std::next(pend, -1);
+			if (insertedIter - main_groups.begin() == current + inserted)
+				offset++;
+			mainBound =
+				std::next(main_groups.begin(), current + inserted - offset);
+		}
+		inserted += current - prev;
+		prev = current;
+	}
+
+	if (_debug)
+	{
+		debug("Main groups: " + std::to_string(level));
+		for (auto &group : main_groups)
+		{
+			std::cout << "[ ";
+			for (auto it = group.begin(); it != group.end(); ++it)
+				std::cout << *it << " ";
+			std::cout << "] ";
+		}
+		std::cout << std::endl;
+
+		debug("Pending groups: " + std::to_string(level));
+		for (auto &group : pending_groups)
+		{
+			std::cout << "[ ";
+			for (auto it = group.begin(); it != group.end(); ++it)
+				std::cout << *it << " ";
+			std::cout << "] ";
+		}
+		std::cout << std::endl;
+
+		debug("Leftover: " + std::to_string(level));
+		for (auto it = leftover.begin(); it != leftover.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << std::endl << std::endl;
+	}
+
+	for (int i = pending_groups.size() - 1; i >= 0; --i)
+	{
+		ContainerI pend = std::next(pending_groups.begin(), i);
+		ContainerI mainBound = std::next(
+			main_groups.begin(),
+			main_groups.size() - pending_groups.size() + i + !leftover.empty());
+		ContainerI pos = std::upper_bound(
+			main_groups.begin(), mainBound, *pend,
+			GroupComparator<typename container_of<T>::type::value_type>());
+		main_groups.insert(pos, *pend);
+	}
+
+	int j = 0;
 	for (auto &group : main_groups)
 	{
-		std::cout << "[ ";
 		for (auto it = group.begin(); it != group.end(); ++it)
-			std::cout << *it << " ";
-		std::cout << "] ";
+		{
+			container[j] = *it;
+			j++;
+		}
 	}
-	std::cout << std::endl;
-
-	debug("Pending groups: " + std::to_string(level));
-	for (auto &group : pending_groups)
-	{
-		std::cout << "[ ";
-		for (auto it = group.begin(); it != group.end(); ++it)
-			std::cout << *it << " ";
-		std::cout << "] ";
-	}
-	std::cout << std::endl;
-
-	debug("Leftover: " + std::to_string(level));
 	for (auto it = leftover.begin(); it != leftover.end(); ++it)
+	{
+		container[j] = *it;
+		j++;
+	}
+
+	debug("\033[1;32mContainer after sorting: \033[0m" + std::to_string(level));
+	for (I it = container.begin(); it != container.end(); ++it)
 		std::cout << *it << " ";
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 }
