@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/13 19:45:49 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:53:42 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void PmergeMe::sort(T &container, int level)
 	int check = container.size() % (level * 2);
 	if (check)
 	{
-		if (check > level)
+		if (check >= level)
 		{
 			T pending_group;
 			pending_group.insert(
@@ -170,13 +170,13 @@ void PmergeMe::sort(T &container, int level)
 				std::next(container.begin(), 2 * level * pairs),
 				std::next(container.begin(), 2 * level * pairs + level));
 			pending_groups.push_back(pending_group);
-		}
 
-		if (check - level > 0)
-			leftover.insert(
-				leftover.end(),
-				std::next(container.begin(), 2 * level * pairs + level),
-				container.end());
+			if (check > level)
+				leftover.insert(
+					leftover.end(),
+					std::next(container.begin(), 2 * level * pairs + level),
+					container.end());
+		}
 		else
 			leftover.insert(leftover.end(),
 							std::next(container.begin(), 2 * level * pairs),
@@ -300,4 +300,5 @@ void PmergeMe::sort(T &container, int level)
 	for (I it = container.begin(); it != container.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
+	debug("\033[1;32mEnd of sorting: \033[0m" + std::to_string(comp_count));
 }
