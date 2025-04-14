@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:30 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/13 18:59:54 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 08:39:13 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int PmergeMe::comp_count = 0;
 void PmergeMe::printCount()
 {
 	std::cout << "Number of comparisons: " << comp_count << std::endl;
+}
+
+void PmergeMe::resetCount()
+{
+	comp_count = 0;
 }
 
 int PmergeMe::jacobsthal(int n)

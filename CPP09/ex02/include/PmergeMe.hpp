@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/13 19:53:42 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 08:39:06 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <deque>
 #include <iostream>
 #include <vector>
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
 
 class PmergeMe
 {
@@ -28,9 +32,10 @@ class PmergeMe
 		void printCount();
 
 		static int comp_count;
+		static void resetCount();
 
 	private:
-		bool _debug = true;
+		bool _debug = false;
 		void debug(std::string str);
 
 		PmergeMe(const PmergeMe &src) = default;
@@ -297,8 +302,11 @@ void PmergeMe::sort(T &container, int level)
 	}
 
 	debug("\033[1;32mContainer after sorting: \033[0m" + std::to_string(level));
-	for (I it = container.begin(); it != container.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	if (_debug)
+	{
+		for (I it = container.begin(); it != container.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << std::endl;
+	}
 	debug("\033[1;32mEnd of sorting: \033[0m" + std::to_string(comp_count));
 }

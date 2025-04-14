@@ -6,10 +6,11 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/10 20:20:06 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 08:39:27 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cmath>
 #include <deque>
 #include <iomanip>
 #include <iostream>
@@ -18,6 +19,17 @@
 #include <vector>
 
 #include "PmergeMe.hpp"
+
+int max_comp(int n)
+{
+	int sum = 0;
+	for (int k = 1; k <= n; ++k)
+	{
+		double value = (3.0 / 4.0) * k;
+		sum += static_cast<int>(ceil(log2(value)));
+	}
+	return sum;
+}
 
 bool isInteger(const std::string& str)
 {
@@ -81,30 +93,61 @@ int main(int argc, char* argv[])
 	{
 		return 1;
 	}
-	PmergeMe merge;
+	PmergeMe merge(DEBUG);
 	clock_t start_vec;
 	clock_t end_vec;
-	// clock_t start_deq;
-	// clock_t end_deq;
+	clock_t start_deq;
+	clock_t end_deq;
 
-	std::cout << "Before:\n" << vec << std::endl;
+	std::cout << "Before:\t" << vec << std::endl;
 	start_vec = clock();
 	merge.sort_vec(vec);
 	end_vec = clock();
-	// start_deq = clock();
-	// merge.sort_deq(deq);
-	// end_deq = clock();
-	// std::cout << "After:\t" << vec << std::endl;
-	// std::cout << std::fixed << std::setprecision(5);
-	// std::cout << "Time to process a range of " << vec.size()
-	// 		  << " elements with "
-	// 		  << "std::vector<int>:\t"
-	// 		  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
-	// 		  << std::endl;
-	// std::cout << "Time to process a range of " << deq.size()
-	// 		  << " elements with "
-	// 		  << "std::deque<int> :\t"
-	// 		  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
-	// 		  << std::endl;
+	for (size_t i = 0; i < vec.size() - 1; ++i)
+	{
+		if (vec[i] > vec[i + 1])
+		{
+			std::cerr << "Error: Vector is not sorted.\n";
+			return 1;
+		}
+	}
+	if (DEBUG)
+	{
+		std::cout << "max: " << std::to_string(max_comp(vec.size()))
+				  << std::endl;
+		std::cout << "comp: " << std::to_string(PmergeMe::comp_count)
+				  << std::endl;
+	}
+	merge.resetCount();
+	start_deq = clock();
+	merge.sort_deq(deq);
+	end_deq = clock();
+	for (size_t i = 0; i < deq.size() - 1; ++i)
+	{
+		if (deq[i] > deq[i + 1])
+		{
+			std::cerr << "Error: Vector is not sorted.\n";
+			return 1;
+		}
+	}
+	if (DEBUG)
+	{
+		std::cout << "max: " << std::to_string(max_comp(vec.size()))
+				  << std::endl;
+		std::cout << "comp: " << std::to_string(PmergeMe::comp_count)
+				  << std::endl;
+	}
+	std::cout << "After:\t" << vec << std::endl;
+	std::cout << std::fixed << std::setprecision(5);
+	std::cout << "Time to process a range of " << vec.size()
+			  << " elements with "
+			  << "std::vector<int>:\t"
+			  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
+			  << std::endl;
+	std::cout << "Time to process a range of " << deq.size()
+			  << " elements with "
+			  << "std::deque<int> :\t"
+			  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
+			  << std::endl;
 	return 0;
 }
