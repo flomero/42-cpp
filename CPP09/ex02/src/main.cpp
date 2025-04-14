@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/14 09:10:10 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:10:59 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ bool isInteger(const std::string& str)
 	if (str.empty())
 		return false;
 	size_t i = 0;
-	if (str[0] == '-' || str[0] == '+')
-		i = 1;
 	for (; i < str.size(); ++i)
 	{
 		if (!std::isdigit(str[i]))
@@ -53,9 +51,11 @@ void checkinput(int argc, char* argv[])
 		std::string arg = argv[i];
 		if (!isInteger(arg))
 		{
-			std::cerr << "Error: Argument " << arg << " is not an integer.\n";
+			std::cerr << "Error: Argument " << arg
+					  << " is not a positive integer.\n";
 			throw std::invalid_argument("");
 		}
+		std::stoi(arg);
 	}
 }
 
@@ -107,6 +107,8 @@ int main(int argc, char* argv[])
 	}
 	catch (const std::exception& e)
 	{
+		if (e.what() != nullptr && e.what()[0] != '\0')
+			std::cerr << "Error: " << e.what() << std::endl;
 		return 1;
 	}
 	PmergeMe merge(DEBUG);
@@ -115,7 +117,10 @@ int main(int argc, char* argv[])
 	clock_t start_deq;
 	clock_t end_deq;
 
-	std::cout << "Before:\t" << vec << std::endl;
+	std::vector<int> vec_copy;
+	fill_vector(vec_copy, argc, argv);
+	std::cout << "Before:\t" << vec_copy << std::endl;
+
 	start_vec = clock();
 	fill_vector(vec, argc, argv);
 	merge.sort_vec(vec);
