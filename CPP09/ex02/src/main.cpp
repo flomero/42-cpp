@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/14 08:39:27 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:10:10 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ bool isInteger(const std::string& str)
 	return true;
 }
 
-void fill_containers(std::vector<int>& vec, std::deque<int>& deq, int argc,
-					 char* argv[])
+void checkinput(int argc, char* argv[])
 {
 	for (int i = 1; i < argc; ++i)
 	{
@@ -57,8 +56,25 @@ void fill_containers(std::vector<int>& vec, std::deque<int>& deq, int argc,
 			std::cerr << "Error: Argument " << arg << " is not an integer.\n";
 			throw std::invalid_argument("");
 		}
+	}
+}
+
+void fill_vector(std::vector<int>& vec, int argc, char* argv[])
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
 		int num = std::stoi(arg);
 		vec.push_back(num);
+	}
+}
+
+void fill_deque(std::deque<int>& deq, int argc, char* argv[])
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
+		int num = std::stoi(arg);
 		deq.push_back(num);
 	}
 }
@@ -87,7 +103,7 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		fill_containers(vec, deq, argc, argv);
+		checkinput(argc, argv);
 	}
 	catch (const std::exception& e)
 	{
@@ -101,6 +117,7 @@ int main(int argc, char* argv[])
 
 	std::cout << "Before:\t" << vec << std::endl;
 	start_vec = clock();
+	fill_vector(vec, argc, argv);
 	merge.sort_vec(vec);
 	end_vec = clock();
 	for (size_t i = 0; i < vec.size() - 1; ++i)
@@ -120,6 +137,7 @@ int main(int argc, char* argv[])
 	}
 	merge.resetCount();
 	start_deq = clock();
+	fill_deque(deq, argc, argv);
 	merge.sort_deq(deq);
 	end_deq = clock();
 	for (size_t i = 0; i < deq.size() - 1; ++i)
