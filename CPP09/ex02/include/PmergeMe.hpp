@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:49:17 by flfische          #+#    #+#             */
-/*   Updated: 2025/04/14 08:39:06 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:59:29 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void PmergeMe::sort(T &container, int level)
 		}
 	}
 
+	int odd = (container.size() / level) % 2 == 1;
 	int check = container.size() % (level * 2);
 	if (check)
 	{
@@ -274,12 +275,12 @@ void PmergeMe::sort(T &container, int level)
 		std::cout << std::endl << std::endl;
 	}
 
-	for (int i = pending_groups.size() - 1; i >= 0; --i)
+	for (int i = pending_groups.size() - 1; i >= 0; i--)
 	{
 		ContainerI pend = std::next(pending_groups.begin(), i);
-		ContainerI mainBound = std::next(
-			main_groups.begin(),
-			main_groups.size() - pending_groups.size() + i + !leftover.empty());
+		ContainerI mainBound =
+			std::next(main_groups.begin(),
+					  main_groups.size() - pending_groups.size() + i + odd);
 		ContainerI pos = std::upper_bound(
 			main_groups.begin(), mainBound, *pend,
 			GroupComparator<typename container_of<T>::type::value_type>());
