@@ -11,6 +11,9 @@ harlFilter
 btc
 input.txt
 RPN
+CPP09/CPP09_tests
+*.py
+test_*
 
 # random
 *_shrubbery

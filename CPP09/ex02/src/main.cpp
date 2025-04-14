@@ -6,10 +6,11 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:48:53 by flfische          #+#    #+#             */
-/*   Updated: 2025/01/08 17:46:54 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:10:59 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cmath>
 #include <deque>
 #include <iomanip>
 #include <iostream>
@@ -17,15 +18,24 @@
 #include <string>
 #include <vector>
 
-#include "PmergeMe.tpp"
+#include "PmergeMe.hpp"
+
+int max_comp(int n)
+{
+	int sum = 0;
+	for (int k = 1; k <= n; ++k)
+	{
+		double value = (3.0 / 4.0) * k;
+		sum += static_cast<int>(ceil(log2(value)));
+	}
+	return sum;
+}
 
 bool isInteger(const std::string& str)
 {
 	if (str.empty())
 		return false;
 	size_t i = 0;
-	if (str[0] == '-' || str[0] == '+')
-		i = 1;
 	for (; i < str.size(); ++i)
 	{
 		if (!std::isdigit(str[i]))
@@ -34,19 +44,37 @@ bool isInteger(const std::string& str)
 	return true;
 }
 
-void fill_containers(std::vector<int>& vec, std::deque<int>& deq, int argc,
-					 char* argv[])
+void checkinput(int argc, char* argv[])
 {
 	for (int i = 1; i < argc; ++i)
 	{
 		std::string arg = argv[i];
 		if (!isInteger(arg))
 		{
-			std::cerr << "Error: Argument " << arg << " is not an integer.\n";
+			std::cerr << "Error: Argument " << arg
+					  << " is not a positive integer.\n";
 			throw std::invalid_argument("");
 		}
+		std::stoi(arg);
+	}
+}
+
+void fill_vector(std::vector<int>& vec, int argc, char* argv[])
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
 		int num = std::stoi(arg);
 		vec.push_back(num);
+	}
+}
+
+void fill_deque(std::deque<int>& deq, int argc, char* argv[])
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
+		int num = std::stoi(arg);
 		deq.push_back(num);
 	}
 }
@@ -75,36 +103,74 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		fill_containers(vec, deq, argc, argv);
+		checkinput(argc, argv);
 	}
 	catch (const std::exception& e)
 	{
+		if (e.what() != nullptr && e.what()[0] != '\0')
+			std::cerr << "Error: " << e.what() << std::endl;
 		return 1;
 	}
-	PmergeMe merge;
+	PmergeMe merge(DEBUG);
 	clock_t start_vec;
 	clock_t end_vec;
-	// clock_t start_deq;
-	// clock_t end_deq;
+	clock_t start_deq;
+	clock_t end_deq;
 
-	std::cout << "Before:\t" << vec << std::endl;
+	std::vector<int> vec_copy;
+	fill_vector(vec_copy, argc, argv);
+	std::cout << "Before:\t" << vec_copy << std::endl;
+
 	start_vec = clock();
+	fill_vector(vec, argc, argv);
 	merge.sort_vec(vec);
 	end_vec = clock();
-	// start_deq = clock();
-	// merge.sort_deq(deq);
-	// end_deq = clock();
-	// std::cout << "After:\t" << vec << std::endl;
-	// std::cout << std::fixed << std::setprecision(5);
-	// std::cout << "Time to process a range of " << vec.size()
-	// 		  << " elements with "
-	// 		  << "std::vector<int>:\t"
-	// 		  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
-	// 		  << std::endl;
-	// std::cout << "Time to process a range of " << deq.size()
-	// 		  << " elements with "
-	// 		  << "std::deque<int> :\t"
-	// 		  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
-	// 		  << std::endl;
+	for (size_t i = 0; i < vec.size() - 1; ++i)
+	{
+		if (vec[i] > vec[i + 1])
+		{
+			std::cerr << "Error: Vector is not sorted.\n";
+			return 1;
+		}
+	}
+	if (DEBUG)
+	{
+		std::cout << "max: " << std::to_string(max_comp(vec.size()))
+				  << std::endl;
+		std::cout << "comp: " << std::to_string(PmergeMe::comp_count)
+				  << std::endl;
+	}
+	merge.resetCount();
+	start_deq = clock();
+	fill_deque(deq, argc, argv);
+	merge.sort_deq(deq);
+	end_deq = clock();
+	for (size_t i = 0; i < deq.size() - 1; ++i)
+	{
+		if (deq[i] > deq[i + 1])
+		{
+			std::cerr << "Error: Vector is not sorted.\n";
+			return 1;
+		}
+	}
+	if (DEBUG)
+	{
+		std::cout << "max: " << std::to_string(max_comp(vec.size()))
+				  << std::endl;
+		std::cout << "comp: " << std::to_string(PmergeMe::comp_count)
+				  << std::endl;
+	}
+	std::cout << "After:\t" << vec << std::endl;
+	std::cout << std::fixed << std::setprecision(5);
+	std::cout << "Time to process a range of " << vec.size()
+			  << " elements with "
+			  << "std::vector<int>:\t"
+			  << (double)(end_vec - start_vec) / CLOCKS_PER_SEC << " us"
+			  << std::endl;
+	std::cout << "Time to process a range of " << deq.size()
+			  << " elements with "
+			  << "std::deque<int> :\t"
+			  << (double)(end_deq - start_deq) / CLOCKS_PER_SEC << " us"
+			  << std::endl;
 	return 0;
 }

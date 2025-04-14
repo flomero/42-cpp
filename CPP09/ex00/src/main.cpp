@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:46:13 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/14 14:55:34 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:35:12 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
 	try
 	{
-		BitcoinExchange btc;
+		BitcoinExchange btc(false);
 		btc.parseDatabase();
 		// btc.printDatabase();
 		btc.handleInput(argv[1]);

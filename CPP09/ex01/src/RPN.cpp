@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:52:15 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/14 17:11:37 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:19:39 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int RPN::calculate(const std::string& input)
 {
-	std::stack<int> stack;
+	std::stack<double> stack;
 	std::istringstream iss(input);
 	std::string token;
 
@@ -31,9 +31,9 @@ int RPN::calculate(const std::string& input)
 				ERROR("Too few operands");
 				return 1;
 			}
-			int a = stack.top();
+			double a = stack.top();
 			stack.pop();
-			int b = stack.top();
+			double b = stack.top();
 			stack.pop();
 			if (token == "+")
 				stack.push(b + a);
