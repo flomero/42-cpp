@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:45:25 by flfische          #+#    #+#             */
-/*   Updated: 2025/01/13 17:58:19 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:35:08 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class BitcoinExchange
 		std::map<std::string, double> _btcRates;
 		const std::string _dbFile = DB_FILE;
 		std::string _inputFile;
+		bool _printWarning = false;
 
 		bool isValidDate(const std::string &date) const;
 		bool isValidDBLine(const std::string &line) const;
@@ -41,6 +42,7 @@ class BitcoinExchange
 
 	public:
 		BitcoinExchange() = default;
+		BitcoinExchange(bool printWarning);
 		~BitcoinExchange() = default;
 		BitcoinExchange(const BitcoinExchange &other) = delete;
 		BitcoinExchange &operator=(const BitcoinExchange &other) = delete;

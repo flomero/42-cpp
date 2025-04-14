@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:45:40 by flfische          #+#    #+#             */
-/*   Updated: 2024/11/14 15:03:58 by flfische         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:35:50 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
+
+BitcoinExchange::BitcoinExchange(bool printWarning)
+	: _printWarning(printWarning)
+{
+}
 
 void BitcoinExchange::parseDatabase()
 {
@@ -158,8 +163,12 @@ void BitcoinExchange::printResult(const std::string &line) const
 	}
 	if (it->first != date)
 	{
-		std::cout << YELLOW << "WARNING: " << RESET << "No matching rate for "
-				  << date << ", using " << it->first << std::endl;
+		if (_printWarning)
+		{
+			std::cout << YELLOW << "WARNING: " << RESET
+					  << "No matching rate for " << date << ", using "
+					  << it->first << std::endl;
+		}
 		std::cout << date << " => " << val << " = " << val * it->second
 				  << std::endl;
 	}
